@@ -26,7 +26,10 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol {
     func navigateToInstallmentSelectionViewController() {
         
     }
-    
+}
+
+// MARK: - Setting up UI
+extension BankSelectionViewController {
     func setupViews() {
         
     }

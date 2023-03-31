@@ -25,7 +25,10 @@ class PaymentTypeViewController: PaymentTypeDelegate, ViewSetupProtocol {
     func navigateToBankSelectionViewController() {
         
     }
-    
+}
+
+// MARK: - Setting up UI
+extension PaymentTypeViewController {
     func setupViews() {
         
     }

@@ -22,7 +22,10 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol {
     func navigateToPaymentTypeViewController() {
         
     }
-    
+}
+
+// MARK: - Setting up UI
+extension AmountEntryViewController {
     func setupViews() {
         
     }
@@ -31,4 +34,3 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol {
     
     }
 }
-
