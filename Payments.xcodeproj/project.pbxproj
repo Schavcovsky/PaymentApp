@@ -9,13 +9,25 @@
 /* Begin PBXBuildFile section */
 		03093EE729D7125600B4D28C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EE629D7125600B4D28C /* AppDelegate.swift */; };
 		03093EE929D7125600B4D28C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EE829D7125600B4D28C /* SceneDelegate.swift */; };
-		03093EEB29D7125600B4D28C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EEA29D7125600B4D28C /* ViewController.swift */; };
-		03093EEE29D7125600B4D28C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03093EEC29D7125600B4D28C /* Main.storyboard */; };
+		03093EEB29D7125600B4D28C /* AmountEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EEA29D7125600B4D28C /* AmountEntryViewController.swift */; };
 		03093EF029D7125600B4D28C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03093EEF29D7125600B4D28C /* Assets.xcassets */; };
 		03093EF329D7125600B4D28C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03093EF129D7125600B4D28C /* LaunchScreen.storyboard */; };
 		03093EFE29D7125600B4D28C /* PaymentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EFD29D7125600B4D28C /* PaymentsTests.swift */; };
 		03093F0829D7125600B4D28C /* PaymentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F0729D7125600B4D28C /* PaymentsUITests.swift */; };
 		03093F0A29D7125600B4D28C /* PaymentsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F0929D7125600B4D28C /* PaymentsUITestsLaunchTests.swift */; };
+		03093F1E29D7301F00B4D28C /* PaymentTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F1D29D7301F00B4D28C /* PaymentTypeViewController.swift */; };
+		03093F2029D7302B00B4D28C /* BankSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F1F29D7302B00B4D28C /* BankSelectionViewController.swift */; };
+		03093F2229D7303700B4D28C /* InstallmentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2129D7303700B4D28C /* InstallmentSelectionViewController.swift */; };
+		03093F2429D7337500B4D28C /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2329D7337500B4D28C /* PaymentMethod.swift */; };
+		03093F2629D735A300B4D28C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2529D735A300B4D28C /* Settings.swift */; };
+		03093F2829D735B000B4D28C /* Bin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2729D735B000B4D28C /* Bin.swift */; };
+		03093F2A29D735D000B4D28C /* CardNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2929D735D000B4D28C /* CardNumber.swift */; };
+		03093F2C29D735EB00B4D28C /* SecurityCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2B29D735EB00B4D28C /* SecurityCode.swift */; };
+		03093F2E29D7373400B4D28C /* AmountEntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2D29D7373400B4D28C /* AmountEntryPresenter.swift */; };
+		03093F3029D7374600B4D28C /* PaymentTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2F29D7374600B4D28C /* PaymentTypePresenter.swift */; };
+		03093F3229D7374F00B4D28C /* BankSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F3129D7374F00B4D28C /* BankSelectionPresenter.swift */; };
+		03093F3429D7375F00B4D28C /* InstallmentSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F3329D7375F00B4D28C /* InstallmentSelectionPresenter.swift */; };
+		03093F3629D7379E00B4D28C /* PaymentMethodsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F3529D7379E00B4D28C /* PaymentMethodsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +51,7 @@
 		03093EE329D7125600B4D28C /* Payments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Payments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03093EE629D7125600B4D28C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03093EE829D7125600B4D28C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		03093EEA29D7125600B4D28C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		03093EED29D7125600B4D28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		03093EEA29D7125600B4D28C /* AmountEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountEntryViewController.swift; sourceTree = "<group>"; };
 		03093EEF29D7125600B4D28C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03093EF229D7125600B4D28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03093EF429D7125600B4D28C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +60,19 @@
 		03093F0329D7125600B4D28C /* PaymentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaymentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03093F0729D7125600B4D28C /* PaymentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsUITests.swift; sourceTree = "<group>"; };
 		03093F0929D7125600B4D28C /* PaymentsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		03093F1D29D7301F00B4D28C /* PaymentTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTypeViewController.swift; sourceTree = "<group>"; };
+		03093F1F29D7302B00B4D28C /* BankSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectionViewController.swift; sourceTree = "<group>"; };
+		03093F2129D7303700B4D28C /* InstallmentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentSelectionViewController.swift; sourceTree = "<group>"; };
+		03093F2329D7337500B4D28C /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		03093F2529D735A300B4D28C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		03093F2729D735B000B4D28C /* Bin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bin.swift; sourceTree = "<group>"; };
+		03093F2929D735D000B4D28C /* CardNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumber.swift; sourceTree = "<group>"; };
+		03093F2B29D735EB00B4D28C /* SecurityCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityCode.swift; sourceTree = "<group>"; };
+		03093F2D29D7373400B4D28C /* AmountEntryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountEntryPresenter.swift; sourceTree = "<group>"; };
+		03093F2F29D7374600B4D28C /* PaymentTypePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTypePresenter.swift; sourceTree = "<group>"; };
+		03093F3129D7374F00B4D28C /* BankSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankSelectionPresenter.swift; sourceTree = "<group>"; };
+		03093F3329D7375F00B4D28C /* InstallmentSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentSelectionPresenter.swift; sourceTree = "<group>"; };
+		03093F3529D7379E00B4D28C /* PaymentMethodsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +123,16 @@
 		03093EE529D7125600B4D28C /* Payments */ = {
 			isa = PBXGroup;
 			children = (
+				03093F1629D714A700B4D28C /* Model */,
+				03093F1A29D714C400B4D28C /* View */,
+				03093F1929D714BF00B4D28C /* Presenter */,
+				03093F1829D714B700B4D28C /* Services */,
+				03093F1729D714AD00B4D28C /* Constants */,
+				03093F1B29D7155800B4D28C /* Supporting Files */,
+				03093F1C29D71A0E00B4D28C /* Base */,
 				03093EE629D7125600B4D28C /* AppDelegate.swift */,
 				03093EE829D7125600B4D28C /* SceneDelegate.swift */,
-				03093EEA29D7125600B4D28C /* ViewController.swift */,
-				03093EEC29D7125600B4D28C /* Main.storyboard */,
 				03093EEF29D7125600B4D28C /* Assets.xcassets */,
-				03093EF129D7125600B4D28C /* LaunchScreen.storyboard */,
-				03093EF429D7125600B4D28C /* Info.plist */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -125,6 +152,71 @@
 				03093F0929D7125600B4D28C /* PaymentsUITestsLaunchTests.swift */,
 			);
 			path = PaymentsUITests;
+			sourceTree = "<group>";
+		};
+		03093F1629D714A700B4D28C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				03093F2329D7337500B4D28C /* PaymentMethod.swift */,
+				03093F2529D735A300B4D28C /* Settings.swift */,
+				03093F2729D735B000B4D28C /* Bin.swift */,
+				03093F2929D735D000B4D28C /* CardNumber.swift */,
+				03093F2B29D735EB00B4D28C /* SecurityCode.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		03093F1729D714AD00B4D28C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		03093F1829D714B700B4D28C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				03093F3529D7379E00B4D28C /* PaymentMethodsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		03093F1929D714BF00B4D28C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				03093F2D29D7373400B4D28C /* AmountEntryPresenter.swift */,
+				03093F2F29D7374600B4D28C /* PaymentTypePresenter.swift */,
+				03093F3129D7374F00B4D28C /* BankSelectionPresenter.swift */,
+				03093F3329D7375F00B4D28C /* InstallmentSelectionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		03093F1A29D714C400B4D28C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03093EEA29D7125600B4D28C /* AmountEntryViewController.swift */,
+				03093F1D29D7301F00B4D28C /* PaymentTypeViewController.swift */,
+				03093F1F29D7302B00B4D28C /* BankSelectionViewController.swift */,
+				03093F2129D7303700B4D28C /* InstallmentSelectionViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		03093F1B29D7155800B4D28C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				03093EF429D7125600B4D28C /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		03093F1C29D71A0E00B4D28C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				03093EF129D7125600B4D28C /* LaunchScreen.storyboard */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +325,6 @@
 			files = (
 				03093EF329D7125600B4D28C /* LaunchScreen.storyboard in Resources */,
 				03093EF029D7125600B4D28C /* Assets.xcassets in Resources */,
-				03093EEE29D7125600B4D28C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +349,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03093EEB29D7125600B4D28C /* ViewController.swift in Sources */,
+				03093EEB29D7125600B4D28C /* AmountEntryViewController.swift in Sources */,
+				03093F2029D7302B00B4D28C /* BankSelectionViewController.swift in Sources */,
+				03093F2629D735A300B4D28C /* Settings.swift in Sources */,
+				03093F3229D7374F00B4D28C /* BankSelectionPresenter.swift in Sources */,
+				03093F2C29D735EB00B4D28C /* SecurityCode.swift in Sources */,
+				03093F1E29D7301F00B4D28C /* PaymentTypeViewController.swift in Sources */,
+				03093F2A29D735D000B4D28C /* CardNumber.swift in Sources */,
+				03093F2429D7337500B4D28C /* PaymentMethod.swift in Sources */,
+				03093F3429D7375F00B4D28C /* InstallmentSelectionPresenter.swift in Sources */,
+				03093F3629D7379E00B4D28C /* PaymentMethodsService.swift in Sources */,
+				03093F2E29D7373400B4D28C /* AmountEntryPresenter.swift in Sources */,
+				03093F2229D7303700B4D28C /* InstallmentSelectionViewController.swift in Sources */,
 				03093EE729D7125600B4D28C /* AppDelegate.swift in Sources */,
+				03093F3029D7374600B4D28C /* PaymentTypePresenter.swift in Sources */,
+				03093F2829D735B000B4D28C /* Bin.swift in Sources */,
 				03093EE929D7125600B4D28C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,14 +401,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		03093EEC29D7125600B4D28C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				03093EED29D7125600B4D28C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		03093EF129D7125600B4D28C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -439,10 +535,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M27NLNYXQP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Payments/Info.plist;
+				INFOPLIST_FILE = "Payments/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -467,10 +562,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M27NLNYXQP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Payments/Info.plist;
+				INFOPLIST_FILE = "Payments/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
