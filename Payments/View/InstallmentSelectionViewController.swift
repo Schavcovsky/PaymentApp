@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InstallmentSelectionViewController: InstallmentSelectionDelegate {
+class InstallmentSelectionViewController: InstallmentSelectionDelegate, ViewSetupProtocol {
     
     private let presenter = InstallmentSelectionPresenter()
 
@@ -25,5 +25,13 @@ class InstallmentSelectionViewController: InstallmentSelectionDelegate {
     
     func navigateToAmountEntryViewController(with userSelection: [String]) {
         
+    }
+    
+    func setupViews() {
+        
+    }
+    
+    func setupConstraints() {
+    
     }
 }

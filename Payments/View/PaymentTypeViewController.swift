@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PaymentTypeViewController: PaymentTypeDelegate {
+class PaymentTypeViewController: PaymentTypeDelegate, ViewSetupProtocol {
     private let presenter = PaymentTypePresenter()
 
     override func viewDidLoad() {
@@ -24,5 +24,13 @@ class PaymentTypeViewController: PaymentTypeDelegate {
     
     func navigateToBankSelectionViewController() {
         
+    }
+    
+    func setupViews() {
+        
+    }
+    
+    func setupConstraints() {
+    
     }
 }

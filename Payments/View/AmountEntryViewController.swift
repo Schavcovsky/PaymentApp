@@ -7,11 +7,12 @@
 
 import UIKit
 
-class AmountEntryViewController: AmountEntryDelegate {
+class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol {
     private let presenter = AmountEntryPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewHierarchy()
     }
     
     func showError(message: String) {
@@ -21,4 +22,13 @@ class AmountEntryViewController: AmountEntryDelegate {
     func navigateToPaymentTypeViewController() {
         
     }
+    
+    func setupViews() {
+        
+    }
+    
+    func setupConstraints() {
+    
+    }
 }
+
