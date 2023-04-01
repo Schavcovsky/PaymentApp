@@ -16,6 +16,7 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewHierarchy()
+        presenter.delegate = self
         addGestureRecognizer()
         errorLabel.isHidden = true
     }

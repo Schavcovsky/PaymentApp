@@ -6,22 +6,23 @@
 //
 
 import Foundation
+import Alamofire
 
+// MARK: - PaymentsMethodsServiceProtocol
 protocol PaymentsMethodsServiceProtocol {
-    func getPaymentMethods(completion: @escaping (Result<[PaymentMethod], Error>) -> Void)
+    func getPaymentMethods(completion: @escaping (_ result: Result<[PaymentMethod], Error>) -> Void)
 }
 
 class PaymentsMethodsService: NetworkManager, PaymentsMethodsServiceProtocol {
-    private let publicKey: String
-    private let baseURL: String = "https://api.mercadopago.com/v1/payment_methods"
-
-    init(publicKey: String) {
-        self.publicKey = publicKey
-    }
-
     func getPaymentMethods(completion: @escaping (Result<[PaymentMethod], Error>) -> Void) {
-        let url = "\(baseURL)?public_key=\(publicKey)"
-        NetworkManager.request(url: url, httpMethod: .get, expecting: [PaymentMethod].self) { result, _, _, _ in
+        guard let publicKey = PlistHelper.value(forKey: "publicKey", fromPlist: "Environment") else {
+            return
+        }
+        
+        let cleanedPublicKey = publicKey.trimmingCharacters(in: .whitespacesAndNewlines)
+        let urlString = "https://api.mercadopago.com/v1/payment_methods?public_key=\(cleanedPublicKey)"
+
+        NetworkManager.request(url: urlString, httpMethod: .get, expecting: [PaymentMethod].self) { result, _, _, _ in
             completion(result)
         }
     }
