@@ -8,8 +8,9 @@
 import UIKit
 
 class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetupProtocol, UITableViewDataSource, UITableViewDelegate {
-    private let presenter = PaymentTypePresenter()
+    private let presenter: PaymentTypePresenter
     private var paymentMethods: [PaymentMethod] = []
+    private lazy var paymentCardFlowView = makePaymentCardFlow()
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -20,6 +21,15 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
         return tableView
     }()
     
+    init(presenter: PaymentTypePresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewHierarchy()
@@ -51,83 +61,40 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
     func showError(message: String) {
         // Handle error display
     }
-}
-
-// MARK: - Setting up UI
-extension PaymentTypeViewController {
+    
     func navigateToBankSelectionViewController() {
         // Handle navigation
     }
     
+}
+
+// MARK: - Setting up UI
+extension PaymentTypeViewController {
+    private func makePaymentCardFlow() -> PaymentCardFlowView {
+        let view = PaymentCardFlowView(title: "Estas cargando", userSelection: presenter.userSelection)
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+    
     // MARK: - ViewSetupProtocol methods
     func setupViews() {
+        view.addSubview(paymentCardFlowView)
         view.addSubview(tableView)
         setupConstraints()
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 80),
+
+            tableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ])
-    }
-}
-
-
-
-
-class PaymentMethodTableViewCell: UITableViewCell {
-    private lazy var thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .black
-        return label
-    }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupViewHierarchy()
-        setupConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configure(with paymentMethod: PaymentMethod) {
-        nameLabel.text = paymentMethod.name
-        if let url = URL(string: paymentMethod.thumbnail) {
-            // You can use a library like Kingfisher or SDWebImage to load the image asynchronously
-            // Kingfisher example:
-            // thumbnailImageView.kf.setImage(with: url)
-        }
-    }
-    
-    private func setupViewHierarchy() {
-        addSubview(thumbnailImageView)
-        addSubview(nameLabel)
-    }
-    
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            thumbnailImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            thumbnailImageView.widthAnchor.constraint(equalToConstant: 40),
-            thumbnailImageView.heightAnchor.constraint(equalToConstant: 40),
-            
-            nameLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 8),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }

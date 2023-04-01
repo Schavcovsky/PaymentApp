@@ -16,9 +16,18 @@ typealias AmountEntryDelegate = AmountEntryViewProtocol & UIViewController
 
 final class AmountEntryPresenter {
     weak var delegate: AmountEntryViewProtocol?
-   
-    func isValidAmount(_ amount: Int) -> Bool {
-        return amount >= 1000
+    let userSelection: UserSelection
+    var amount: Int?
+    
+    init(userSelection: UserSelection) {
+        self.userSelection = userSelection
     }
     
+    func isValidAmount() -> Bool {
+        return self.amount ?? Int(0.0) >= 1000
+    }
+    
+    func saveAmount() {
+        userSelection.amount = Double(self.amount ?? Int(0.0))
+    }
 }

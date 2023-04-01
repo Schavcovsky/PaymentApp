@@ -8,15 +8,23 @@
 import UIKit
 
 class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextFieldDelegate {
-    private let presenter = AmountEntryPresenter()
+    private let presenter: AmountEntryPresenter
     private lazy var amountTextField = makeAmountTextField()
     private lazy var continueButton = makeContinueButton()
     private lazy var errorLabel = makeErrorLabel()
+        
+    init(presenter: AmountEntryPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewHierarchy()
-        presenter.delegate = self
         addGestureRecognizer()
         errorLabel.isHidden = true
     }
@@ -32,7 +40,8 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
     }
     
     func navigateToPaymentTypeViewController() {
-        let paymentTypeViewController = PaymentTypeViewController()
+        let paymentTypePresenter = PaymentTypePresenter(userSelection: presenter.userSelection)
+        let paymentTypeViewController = PaymentTypeViewController(presenter: paymentTypePresenter)
         navigationController?.pushViewController(paymentTypeViewController, animated: true)
     }
 }
@@ -49,8 +58,9 @@ extension AmountEntryViewController {
         textField.delegate = self
         textField.onAmountChanged = { [weak self] amount in
             guard let self = self else { return }
-            self.continueButton.isEnabled = self.presenter.isValidAmount(amount)
-            self.errorLabel.isHidden = self.presenter.isValidAmount(amount)
+            self.presenter.amount = amount
+            self.continueButton.isEnabled = self.presenter.isValidAmount()
+            self.errorLabel.isHidden = self.presenter.isValidAmount()
         }
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -98,6 +108,7 @@ extension AmountEntryViewController {
 
 extension AmountEntryViewController {
     @objc private func continueButtonTapped() {
+        presenter.saveAmount()
         navigateToPaymentTypeViewController()
     }
 }

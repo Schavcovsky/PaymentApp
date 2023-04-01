@@ -17,9 +17,11 @@ typealias PaymentTypeDelegate = PaymentTypeViewProtocol
 
 final class PaymentTypePresenter {
     weak var delegate: PaymentTypeViewProtocol?
+    let userSelection: UserSelection
     private let paymentsMethodsService: PaymentsMethodsServiceProtocol
     
-    init(paymentsMethodsService: PaymentsMethodsServiceProtocol = PaymentsMethodsService()) {
+    init(userSelection: UserSelection, paymentsMethodsService: PaymentsMethodsServiceProtocol = PaymentsMethodsService()) {
+        self.userSelection = userSelection
         self.paymentsMethodsService = paymentsMethodsService
     }
     
@@ -28,14 +30,12 @@ final class PaymentTypePresenter {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let paymentMethods):
-                    // Handle the success case, e.g., store the payment methods, update the UI, etc.
-                    self?.delegate?.displayPaymentMethods(paymentMethods: paymentMethods)
+                    let filteredPaymentMethods = paymentMethods.filter { $0.paymentTypeID == .creditCard }
+                    self?.delegate?.displayPaymentMethods(paymentMethods: filteredPaymentMethods)
                 case .failure(let error):
-                    // Handle the error case, e.g., show an error message, update the UI, etc.
                     self?.delegate?.showError(message: error.localizedDescription)
                 }
             }
         }
     }
-    
 }

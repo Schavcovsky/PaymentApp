@@ -29,9 +29,12 @@
 		03093F3F29D7AE8F00B4D28C /* PaymentsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F3E29D7AE8F00B4D28C /* PaymentsButton.swift */; };
 		03093F4129D7B6DF00B4D28C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F4029D7B6DF00B4D28C /* Constants.swift */; };
 		03093F4529D7DD4C00B4D28C /* PaymentsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F4429D7DD4C00B4D28C /* PaymentsLabel.swift */; };
+		034DFA0029D8AD4B0046720F /* PaymentCardFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DF9FF29D8AD4B0046720F /* PaymentCardFlowView.swift */; };
+		034DFA0229D8AECA0046720F /* UserSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA0129D8AECA0046720F /* UserSelection.swift */; };
 		03D6CFE729D7F21800E5735E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6CFE629D7F21800E5735E /* NetworkManager.swift */; };
 		03D6CFEB29D7F42300E5735E /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03D6CFEA29D7F42300E5735E /* Environment.plist */; };
 		03D6CFEE29D7F55500E5735E /* PlistHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6CFED29D7F55500E5735E /* PlistHelper.swift */; };
+		03D6CFF229D86AA500E5735E /* PaymentMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6CFF129D86AA500E5735E /* PaymentMethodTableViewCell.swift */; };
 		925246142D8241D0D37BE67A /* Pods_PaymentsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFCBD552CF05A0A3674EE0E /* Pods_PaymentsTests.framework */; };
 		D06BF77D3A780937A629BEC6 /* Pods_Payments_PaymentsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC82D6D7240C50F4A2DAD40 /* Pods_Payments_PaymentsUITests.framework */; };
 		E5946DC213520FDFFDB684AC /* Pods_Payments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AF2DA1EA5EDBF1E279830E /* Pods_Payments.framework */; };
@@ -81,9 +84,12 @@
 		03093F3E29D7AE8F00B4D28C /* PaymentsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsButton.swift; sourceTree = "<group>"; };
 		03093F4029D7B6DF00B4D28C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		03093F4429D7DD4C00B4D28C /* PaymentsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsLabel.swift; sourceTree = "<group>"; };
+		034DF9FF29D8AD4B0046720F /* PaymentCardFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardFlowView.swift; sourceTree = "<group>"; };
+		034DFA0129D8AECA0046720F /* UserSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelection.swift; sourceTree = "<group>"; };
 		03D6CFE629D7F21800E5735E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		03D6CFEA29D7F42300E5735E /* Environment.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Environment.plist; sourceTree = "<group>"; };
 		03D6CFED29D7F55500E5735E /* PlistHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistHelper.swift; sourceTree = "<group>"; };
+		03D6CFF129D86AA500E5735E /* PaymentMethodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableViewCell.swift; sourceTree = "<group>"; };
 		8CC82D6D7240C50F4A2DAD40 /* Pods_Payments_PaymentsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Payments_PaymentsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2AF2DA1EA5EDBF1E279830E /* Pods_Payments.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Payments.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B164C5917AFB59923D20B706 /* Pods-PaymentsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaymentsTests.debug.xcconfig"; path = "Target Support Files/Pods-PaymentsTests/Pods-PaymentsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				03093F2329D7337500B4D28C /* PaymentMethod.swift */,
+				034DFA0129D8AECA0046720F /* UserSelection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,6 +230,7 @@
 				03093F3729D7926600B4D28C /* Extensions */,
 				03093EEA29D7125600B4D28C /* AmountEntryViewController.swift */,
 				03093F1D29D7301F00B4D28C /* PaymentTypeViewController.swift */,
+				03D6CFF129D86AA500E5735E /* PaymentMethodTableViewCell.swift */,
 				03093F1F29D7302B00B4D28C /* BankSelectionViewController.swift */,
 				03093F2129D7303700B4D28C /* InstallmentsSelectionViewController.swift */,
 			);
@@ -260,6 +268,7 @@
 				03093F3C29D7A3D500B4D28C /* PaymentsAmountTextField.swift */,
 				03093F3E29D7AE8F00B4D28C /* PaymentsButton.swift */,
 				03093F4429D7DD4C00B4D28C /* PaymentsLabel.swift */,
+				034DF9FF29D8AD4B0046720F /* PaymentCardFlowView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -544,6 +553,8 @@
 			files = (
 				03093EEB29D7125600B4D28C /* AmountEntryViewController.swift in Sources */,
 				03093F2029D7302B00B4D28C /* BankSelectionViewController.swift in Sources */,
+				03D6CFF229D86AA500E5735E /* PaymentMethodTableViewCell.swift in Sources */,
+				034DFA0029D8AD4B0046720F /* PaymentCardFlowView.swift in Sources */,
 				03093F3929D7928300B4D28C /* UIViewController+ViewSetupProtocol.swift in Sources */,
 				03D6CFE729D7F21800E5735E /* NetworkManager.swift in Sources */,
 				03093F3229D7374F00B4D28C /* BankSelectionPresenter.swift in Sources */,
@@ -561,6 +572,7 @@
 				03093F3029D7374600B4D28C /* PaymentTypePresenter.swift in Sources */,
 				03D6CFEE29D7F55500E5735E /* PlistHelper.swift in Sources */,
 				03093EE929D7125600B4D28C /* SceneDelegate.swift in Sources */,
+				034DFA0229D8AECA0046720F /* UserSelection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
