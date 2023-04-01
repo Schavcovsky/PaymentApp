@@ -1,5 +1,5 @@
 //
-//  InstallmentSelectionViewController.swift
+//  InstallmentsSelectionViewController.swift
 //  Payments
 //
 //  Created by Alejandro Villalobos on 31-03-23.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class InstallmentSelectionViewController: InstallmentSelectionDelegate {
+class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSetupProtocol {
     
-    private let presenter = InstallmentSelectionPresenter()
+    private let presenter = InstallmentsSelectionPresenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,5 +25,16 @@ class InstallmentSelectionViewController: InstallmentSelectionDelegate {
     
     func navigateToAmountEntryViewController(with userSelection: [String]) {
         
+    }
+}
+
+// MARK: - Setting up UI
+extension InstallmentsSelectionViewProtocol {
+    func setupViews() {
+        
+    }
+    
+    func setupConstraints() {
+    
     }
 }
