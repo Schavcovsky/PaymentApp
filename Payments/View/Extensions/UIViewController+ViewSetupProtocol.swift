@@ -14,6 +14,7 @@ protocol ViewSetupProtocol: AnyObject {
 
 extension ViewSetupProtocol where Self: UIViewController {
     func setupViewHierarchy() {
+        view.backgroundColor = .systemGray6
         setupViews()
         setupConstraints()
     }

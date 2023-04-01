@@ -29,6 +29,10 @@
 		03093F3429D7375F00B4D28C /* InstallmentsSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F3329D7375F00B4D28C /* InstallmentsSelectionPresenter.swift */; };
 		03093F3629D7379E00B4D28C /* PaymentsMethodsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F3529D7379E00B4D28C /* PaymentsMethodsService.swift */; };
 		03093F3929D7928300B4D28C /* UIViewController+ViewSetupProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F3829D7928300B4D28C /* UIViewController+ViewSetupProtocol.swift */; };
+		03093F3D29D7A3D500B4D28C /* PaymentsAmountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F3C29D7A3D500B4D28C /* PaymentsAmountTextField.swift */; };
+		03093F3F29D7AE8F00B4D28C /* PaymentsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F3E29D7AE8F00B4D28C /* PaymentsButton.swift */; };
+		03093F4129D7B6DF00B4D28C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F4029D7B6DF00B4D28C /* Constants.swift */; };
+		03093F4529D7DD4C00B4D28C /* PaymentsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F4429D7DD4C00B4D28C /* PaymentsLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,10 @@
 		03093F3329D7375F00B4D28C /* InstallmentsSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentsSelectionPresenter.swift; sourceTree = "<group>"; };
 		03093F3529D7379E00B4D28C /* PaymentsMethodsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsMethodsService.swift; sourceTree = "<group>"; };
 		03093F3829D7928300B4D28C /* UIViewController+ViewSetupProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ViewSetupProtocol.swift"; sourceTree = "<group>"; };
+		03093F3C29D7A3D500B4D28C /* PaymentsAmountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsAmountTextField.swift; sourceTree = "<group>"; };
+		03093F3E29D7AE8F00B4D28C /* PaymentsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsButton.swift; sourceTree = "<group>"; };
+		03093F4029D7B6DF00B4D28C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		03093F4429D7DD4C00B4D28C /* PaymentsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,8 +136,9 @@
 				03093F1629D714A700B4D28C /* Model */,
 				03093F1A29D714C400B4D28C /* View */,
 				03093F1929D714BF00B4D28C /* Presenter */,
-				03093F1829D714B700B4D28C /* Services */,
 				03093F1729D714AD00B4D28C /* Constants */,
+				03093F3B29D7A3A800B4D28C /* UI */,
+				03093F1829D714B700B4D28C /* Services */,
 				03093F1B29D7155800B4D28C /* Supporting Files */,
 				03093F1C29D71A0E00B4D28C /* Base */,
 				03093EE629D7125600B4D28C /* AppDelegate.swift */,
@@ -171,6 +180,7 @@
 		03093F1729D714AD00B4D28C /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				03093F4029D7B6DF00B4D28C /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -228,6 +238,16 @@
 				03093F3829D7928300B4D28C /* UIViewController+ViewSetupProtocol.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		03093F3B29D7A3A800B4D28C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				03093F3C29D7A3D500B4D28C /* PaymentsAmountTextField.swift */,
+				03093F3E29D7AE8F00B4D28C /* PaymentsButton.swift */,
+				03093F4429D7DD4C00B4D28C /* PaymentsLabel.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,12 +387,16 @@
 				03093F3229D7374F00B4D28C /* BankSelectionPresenter.swift in Sources */,
 				03093F2C29D735EB00B4D28C /* SecurityCode.swift in Sources */,
 				03093F1E29D7301F00B4D28C /* PaymentTypeViewController.swift in Sources */,
+				03093F3F29D7AE8F00B4D28C /* PaymentsButton.swift in Sources */,
 				03093F2A29D735D000B4D28C /* CardNumber.swift in Sources */,
 				03093F2429D7337500B4D28C /* PaymentMethod.swift in Sources */,
+				03093F3D29D7A3D500B4D28C /* PaymentsAmountTextField.swift in Sources */,
 				03093F3429D7375F00B4D28C /* InstallmentsSelectionPresenter.swift in Sources */,
+				03093F4529D7DD4C00B4D28C /* PaymentsLabel.swift in Sources */,
 				03093F3629D7379E00B4D28C /* PaymentsMethodsService.swift in Sources */,
 				03093F2E29D7373400B4D28C /* AmountEntryPresenter.swift in Sources */,
 				03093F2229D7303700B4D28C /* InstallmentsSelectionViewController.swift in Sources */,
+				03093F4129D7B6DF00B4D28C /* Constants.swift in Sources */,
 				03093EE729D7125600B4D28C /* AppDelegate.swift in Sources */,
 				03093F3029D7374600B4D28C /* PaymentTypePresenter.swift in Sources */,
 				03093F2829D735B000B4D28C /* Bin.swift in Sources */,
