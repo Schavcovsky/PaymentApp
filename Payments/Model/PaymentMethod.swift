@@ -57,3 +57,62 @@ enum PaymentTypeID: String, Codable {
 enum ProcessingMode: String, Codable {
     case aggregator = "aggregator"
 }
+
+struct Setting: Codable {
+    let cardNumber: CardNumber
+    let bin: Bin
+    let securityCode: SecurityCode
+
+    enum CodingKeys: String, CodingKey {
+        case cardNumber = "card_number"
+        case bin
+        case securityCode = "security_code"
+    }
+}
+
+struct Bin: Codable {
+    let pattern, installmentsPattern: String
+    let exclusionPattern: String?
+
+    enum CodingKeys: String, CodingKey {
+        case pattern
+        case installmentsPattern = "installments_pattern"
+        case exclusionPattern = "exclusion_pattern"
+    }
+}
+
+struct CardNumber: Codable {
+    let validation: Validation
+    let length: Int
+}
+
+enum Validation: String, Codable {
+    case none = "none"
+    case standard = "standard"
+}
+
+struct SecurityCode: Codable {
+    let length: Int
+    let cardLocation: CardLocation
+    let mode: Mode
+
+    enum CodingKeys: String, CodingKey {
+        case length
+        case cardLocation = "card_location"
+        case mode
+    }
+}
+
+enum CardLocation: String, Codable {
+    case back = "back"
+    case front = "front"
+}
+
+enum Mode: String, Codable {
+    case mandatory = "mandatory"
+    case modeOptional = "optional"
+}
+
+enum Status: String, Codable {
+    case active = "active"
+}
