@@ -13,7 +13,7 @@ protocol PaymentTypeViewProtocol: AnyObject {
     func navigateToBankSelectionViewController()
 }
 
-typealias PaymentTypeDelegate = PaymentTypeViewProtocol & UIViewController
+typealias PaymentTypeDelegate = PaymentTypeViewProtocol
 
 final class PaymentTypePresenter {
     weak var delegate: PaymentTypeViewProtocol?
