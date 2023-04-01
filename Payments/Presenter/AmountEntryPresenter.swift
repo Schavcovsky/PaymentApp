@@ -17,4 +17,8 @@ typealias AmountEntryDelegate = AmountEntryViewProtocol & UIViewController
 final class AmountEntryPresenter {
     weak var delegate: AmountEntryViewProtocol?
     
+    func isValidAmount(_ amount: Int) -> Bool {
+        return amount >= 1000
+    }
+
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BankSelectionViewController: BankSelectionDelegate {
+class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol {
     private let presenter = BankSelectionPresenter()
 
     override func viewDidLoad() {
@@ -25,5 +25,16 @@ class BankSelectionViewController: BankSelectionDelegate {
     
     func navigateToInstallmentSelectionViewController() {
         
+    }
+}
+
+// MARK: - Setting up UI
+extension BankSelectionViewController {
+    func setupViews() {
+        
+    }
+    
+    func setupConstraints() {
+    
     }
 }

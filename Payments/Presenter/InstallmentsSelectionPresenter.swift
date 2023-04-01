@@ -1,5 +1,5 @@
 //
-//  InstallmentSelectionPresenter.swift
+//  InstallmentsSelectionPresenter.swift
 //  Payments
 //
 //  Created by Alejandro Villalobos on 31-03-23.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol InstallmentSelectionViewProtocol: AnyObject {
+protocol InstallmentsSelectionViewProtocol: AnyObject {
     func displayInstallments(installments: [Int])
     func showError(message: String)
     func navigateToAmountEntryViewController(with userSelection: [String])
 }
 
-typealias InstallmentSelectionDelegate = InstallmentSelectionViewProtocol & UIViewController
+typealias InstallmentsSelectionDelegate = InstallmentsSelectionViewProtocol & UIViewController
 
-final class InstallmentSelectionPresenter {
+final class InstallmentsSelectionPresenter {
     weak var delegate: BankSelectionViewProtocol?
     
 }
