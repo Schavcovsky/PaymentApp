@@ -20,5 +20,5 @@ final class AmountEntryPresenter {
     func isValidAmount(_ amount: Int) -> Bool {
         return amount >= 1000
     }
-
+    
 }

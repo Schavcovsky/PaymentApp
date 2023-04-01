@@ -12,7 +12,7 @@ class PaymentTypeViewController: PaymentTypeDelegate, ViewSetupProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupViewHierarchy()
         presenter.delegate = self
         presenter.fetchPaymentMethods()
     }
