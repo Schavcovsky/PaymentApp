@@ -8,11 +8,14 @@
 import UIKit
 
 class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextFieldDelegate {
-    private let presenter: AmountEntryPresenter
+    internal let presenter: AmountEntryPresenter
     private lazy var amountTextField = makeAmountTextField()
     private lazy var continueButton = makeContinueButton()
     private lazy var errorLabel = makeErrorLabel()
-        
+    private var continueButtonBottomConstraint: NSLayoutConstraint!
+    private var amountTextFieldCenterYConstraint: NSLayoutConstraint!
+    weak var actionDelegate: AmountEntryViewActionDelegate?
+
     init(presenter: AmountEntryPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -22,19 +25,42 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad()  {
         super.viewDidLoad()
+        presenter.delegate = self
         setupViewHierarchy()
         addGestureRecognizer()
         errorLabel.isHidden = true
+        configureBackButton()
+        setupNotificationObservers()
     }
     
+    deinit {
+        removeNotificationObservers()
+    }
+    
+    private func configureBackButton() {
+        let backButton = UIBarButtonItem(title: ViewStringConstants.AmountEntry.title, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+    }
+        
     func addGestureRecognizer() {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapRecognizer)
     }
     
-    private func updateUIForAmount(_ amount: Double) {
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    private func removeNotificationObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    // MARK: - AmountEntryDelegate
+    private func updateUIForAmount(_ amount: String) {
         presenter.amount = amount
         let isValidAmount = presenter.isValidAmount()
         continueButton.isEnabled = isValidAmount
@@ -46,10 +72,14 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
         errorLabel.isHidden = false
     }
     
-    func navigateToPaymentTypeViewController() {
+    func navigateToPaymentTypeViewController(viewController: UIViewController) {
         let paymentTypePresenter = PaymentTypePresenter(userSelection: presenter.userSelection)
         let paymentTypeViewController = PaymentTypeViewController(presenter: paymentTypePresenter)
-        navigationController?.pushViewController(paymentTypeViewController, animated: true)
+        viewController.navigationController?.pushViewController(paymentTypeViewController, animated: true)
+
+        let amountEntryPresenter = AmountEntryPresenter(userSelection: presenter.userSelection)
+        let amountEntryViewController = AmountEntryViewController(presenter: amountEntryPresenter)
+        amountEntryViewController.actionDelegate = amountEntryViewController
     }
 }
 
@@ -61,10 +91,10 @@ extension AmountEntryViewController {
         textField.textAlignment = .center
         textField.borderStyle = .roundedRect
         textField.placeholder = ViewStringConstants.AmountEntry.amountPlaceholder
-        textField.inputType = .double
+        textField.inputType = .integer
         textField.delegate = self
         textField.onAmountChanged = { [weak self] amount in
-            self?.updateUIForAmount(amount)
+            self?.updateUIForAmount(String(amount))
         }
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -104,16 +134,24 @@ extension AmountEntryViewController {
             
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             continueButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+
+        continueButtonBottomConstraint = continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        continueButtonBottomConstraint.isActive = true
+        
+        amountTextFieldCenterYConstraint = amountTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        amountTextFieldCenterYConstraint.isActive = true
     }
 }
 
 extension AmountEntryViewController {
     @objc private func continueButtonTapped() {
         presenter.saveAmount()
-        navigateToPaymentTypeViewController()
+        presenter.navigateToPaymentTypeViewController(viewController: self)
+        amountTextField.text = nil
+        continueButton.isEnabled = false
+        dismissKeyboard()
     }
 }
 
@@ -125,5 +163,54 @@ extension AmountEntryViewController {
     
     @objc private func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension AmountEntryViewController {
+    @objc private func keyboardWillShow(notification: Notification) {
+        if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardFrame.height
+            continueButtonBottomConstraint.constant = -keyboardHeight - 16
+            amountTextFieldCenterYConstraint.constant = -(keyboardHeight / 2)
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: Notification) {
+        continueButtonBottomConstraint.constant = -16
+        amountTextFieldCenterYConstraint.constant = 0
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+extension AmountEntryViewController: AmountEntryViewActionDelegate {
+    func onContinueButtonTapped() {
+        let alert = UIAlertController(title: ViewStringConstants.AmountEntry.alertTitle, message: userSelectionMessage(), preferredStyle: .alert)
+        let okAction = UIAlertAction(title: ViewStringConstants.AmountEntry.alertPrimaryButton, style: .default) { [weak self] _ in
+            self?.presenter.userSelection.reset()
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    private func userSelectionMessage() -> String {
+        let selection = presenter.userSelection.current
+        let amount = selection.amount?.formatAsMoney() ?? .notAvailable
+        let paymentMethod = selection.paymentMethodName ?? .notAvailable
+        let bank = selection.bankName ?? .notAvailable
+        let installment = selection.selectedInstallment.map(String.init) ?? .notAvailable
+        let amountInterest = selection.amountInterest?.formatAsMoney() ?? .notAvailable
+
+        return """
+        \(ViewStringConstants.AmountEntry.alertContentAmount) \(amount)
+        \(ViewStringConstants.AmountEntry.alertContentPaymentMethod) \(paymentMethod)
+        \(ViewStringConstants.AmountEntry.alertContentBank) \(bank)
+        \(ViewStringConstants.AmountEntry.alertContentInstallments) \(installment)
+        \(ViewStringConstants.AmountEntry.alertContentAmountInterest) \(amountInterest)
+        """
     }
 }

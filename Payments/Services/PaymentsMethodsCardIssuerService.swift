@@ -15,7 +15,7 @@ protocol PaymentsMethodsCardIssuerServiceProtocol {
 class PaymentsMethodsCardIssuerService: NetworkManager, PaymentsMethodsCardIssuerServiceProtocol {
     func getPaymentMethodsCardIssuer(userSelection: UserSelection, completion: @escaping (Result<[CardIssuer], Error>) -> Void) {
         guard let publicKey = PlistHelper.value(forKey: "publicKey", fromPlist: "Environment"),
-              let selectedPaymentMethod = userSelection.paymentMethodId else {
+              let selectedPaymentMethod = userSelection.current.paymentMethodId else {
             return
         }
         

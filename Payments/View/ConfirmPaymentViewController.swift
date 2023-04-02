@@ -25,26 +25,22 @@ class ConfirmPaymentViewController: ConfirmPaymentDelegate, ViewSetupProtocol {
         super.viewDidLoad()
         setupViewHierarchy()
     }
-    
-    func confirmTransaction() {
-        
-    }
-    
 }
 
 // MARK: - Setting up UI
 extension ConfirmPaymentViewController {
     private func makePaymentCardFlow() -> PaymentCardFlowView {
-        let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethodBankInstallment)
+        let view = PaymentCardFlowView(title: ViewStringConstants.ConfirmPayment.paymentCardTitle, userSelection: presenter.userSelection, displayOption: .amountPaymentMethodBankInstallment)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
     
     private func makeContinueButton() -> PaymentsButton {
         let button = PaymentsButton(type: .system)
-        button.setTitle("Confirmar", for: .normal)
+        button.setTitle(ViewStringConstants.ConfirmPayment.continueButton, for: .normal)
         button.isEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         return button
     }
     
@@ -58,7 +54,6 @@ extension ConfirmPaymentViewController {
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 210),
             
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -70,7 +65,12 @@ extension ConfirmPaymentViewController {
 
 extension ConfirmPaymentViewController {
     @objc private func continueButtonTapped() {
-        //presenter.saveAmount()
-        //navigateToPaymentTypeViewController()
+        for viewController in navigationController?.viewControllers ?? [] {
+            if let amountEntryVC = viewController as? AmountEntryViewController {
+                navigationController?.popToViewController(amountEntryVC, animated: true)
+                amountEntryVC.actionDelegate?.onContinueButtonTapped()
+                break
+            }
+        }
     }
 }

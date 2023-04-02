@@ -35,6 +35,14 @@ class PaymentCardFlowView: UIView {
         return stackView
     }()
     
+    internal lazy var containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleLabel)
+        view.addSubview(stackView)
+        return view
+    }()
+    
     init(title: String, userSelection: UserSelection, displayOption: DisplayOption) {
         self.userSelection = userSelection
         self.displayOption = displayOption
@@ -50,49 +58,49 @@ class PaymentCardFlowView: UIView {
     }
     
     func updateData() {
-        let amountItem = createItemCell(title: "Monto", value: userSelection.amount.map { "\($0)".formatAsMoney() })
-        let paymentMethodItem = createItemCell(title: "Método de Pago", value: userSelection.paymentMethodName)
-        let bankItem = createItemCell(title: "Banco", value: userSelection.bankName)
-        let installmentsItem = createItemCell(title: "Cuotas", value: userSelection.selectedInstallment)
-        let amountInterestItem = createItemCell(title: "Monto Total", value: userSelection.amountInterest.map { "\($0)".formatAsMoney() })
+        let amountItem = createItemCell(title: "Monto", value: userSelection.current.amount.map { "\($0)".formatAsMoney() })
+        let paymentMethodItem = createItemCell(title: "Método de Pago", value: userSelection.current.paymentMethodName)
+        let bankItem = createItemCell(title: "Banco", value: userSelection.current.bankName)
+        let installmentsItem = createItemCell(title: "Cuotas", value: String(userSelection.current.selectedInstallment ?? 0))
+        let amountInterestItem = createItemCell(title: "Monto Total", value: userSelection.current.amountInterest.map { "\($0)".formatAsMoney() })
 
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
         switch displayOption {
         case .amount:
-            if let _ = userSelection.amount {
+            if let _ = userSelection.current.amount {
                 stackView.addArrangedSubview(amountItem)
             }
         case .amountPaymentMethod:
-            if let _ = userSelection.amount {
+            if let _ = userSelection.current.amount {
                 stackView.addArrangedSubview(amountItem)
             }
-            if let _ = userSelection.paymentMethodId {
+            if let _ = userSelection.current.paymentMethodId {
                 stackView.addArrangedSubview(paymentMethodItem)
             }
         case .amountPaymentMethodBank:
-            if let _ = userSelection.amount {
+            if let _ = userSelection.current.amount {
                 stackView.addArrangedSubview(amountItem)
             }
-            if let _ = userSelection.paymentMethodId {
+            if let _ = userSelection.current.paymentMethodId {
                 stackView.addArrangedSubview(paymentMethodItem)
             }
-            if let _ = userSelection.bankId {
+            if let _ = userSelection.current.bankId {
                 stackView.addArrangedSubview(bankItem)
             }
         case .amountPaymentMethodBankInstallment:
-            if let _ = userSelection.amount {
+            if let _ = userSelection.current.amount {
                 stackView.addArrangedSubview(amountItem)
             }
-            if let _ = userSelection.paymentMethodId {
+            if let _ = userSelection.current.paymentMethodId {
                 stackView.addArrangedSubview(paymentMethodItem)
             }
-            if let _ = userSelection.bankId {
+            if let _ = userSelection.current.bankId {
                 stackView.addArrangedSubview(bankItem)
             }
-            if let selectedInstallment = userSelection.selectedInstallment, Int(selectedInstallment) ?? 0 > 1 {
+            if let selectedInstallment = userSelection.current.selectedInstallment, Int(selectedInstallment) ?? 0 > 1 {
                 stackView.addArrangedSubview(installmentsItem)
-                if let _ = userSelection.amountInterest {
+                if let _ = userSelection.current.amountInterest {
                     stackView.addArrangedSubview(amountInterestItem)
                 }
             }
@@ -131,20 +139,32 @@ class PaymentCardFlowView: UIView {
     private func setupViewHierarchy() {
         addSubview(titleLabel)
         addSubview(stackView)
-        
-        layer.cornerRadius = 8
-        backgroundColor = .systemGray5
+        addSubview(containerView)
+
+        containerView.layer.cornerRadius = 8
+        containerView.backgroundColor = .systemGray5
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 24),
+            
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             
             stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            stackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16)
         ])
+    }
+}
+
+extension PaymentCardFlowView {
+    override var intrinsicContentSize: CGSize {
+        return containerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
     }
 }

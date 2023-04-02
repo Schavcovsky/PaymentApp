@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum InputType {
-    case text
-    case double
-}
-
 class PaymentAmountTextField: UITextField {
     var inputType: InputType = .text {
         didSet {
@@ -19,12 +14,17 @@ class PaymentAmountTextField: UITextField {
         }
     }
     
-    var onAmountChanged: ((Double) -> Void)?
+    enum InputType {
+        case text
+        case integer
+    }
+    
+    var onAmountChanged: ((Int) -> Void)?
 
-    var numericAmount: Double {
+    var numericAmount: Int {
         guard let text = text else { return 0 }
         let numericString = text.filter { $0.isNumber }
-        return Double(numericString) ?? 0.0
+        return Int(numericString) ?? 0
     }
     
     var placeholderText: String?
@@ -50,7 +50,7 @@ class PaymentAmountTextField: UITextField {
         switch inputType {
         case .text:
             keyboardType = .default
-        case .double:
+        case .integer:
             keyboardType = .numberPad
         }
     }
@@ -58,7 +58,7 @@ class PaymentAmountTextField: UITextField {
     @objc private func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
         
-        if inputType == .double {
+        if inputType == .integer {
             let numericString = text.filter { $0.isNumber }
             if let firstChar = numericString.first, firstChar == "0" {
                 textField.text = String(numericString.dropFirst())
