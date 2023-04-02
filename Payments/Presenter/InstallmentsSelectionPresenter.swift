@@ -7,8 +7,9 @@
 
 import UIKit
 
+// MARK: - InstallmentsSelectionViewProtocol
 protocol InstallmentsSelectionViewProtocol: AnyObject {
-    func displayInstallments(installments: [Installments.PayerCost])
+    func displayInstallments()
     func showError(message: String)
     func navigateToBankSelectionViewController()
 }
@@ -31,9 +32,9 @@ final class InstallmentsSelectionPresenter {
             switch result {
             case .success(let installments):
                 self?.installments = installments.first?.payerCosts ?? []
-                self?.delegate?.displayInstallments(installments: self?.installments ?? [])
-            case .failure(let error):
-                self?.delegate?.showError(message: error.localizedDescription)
+                self?.delegate?.displayInstallments()
+            case .failure(_):
+                self?.delegate?.showError(message: "Lo sentimos, no se pudieron obtener los datos. Verifique su conexión a Internet y vuelva a intentarlo.")
             }
         }
     }

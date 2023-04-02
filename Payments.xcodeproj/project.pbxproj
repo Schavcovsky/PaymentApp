@@ -41,6 +41,7 @@
 		034DFA1229D95D130046720F /* ConfirmPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA1129D95D130046720F /* ConfirmPaymentViewController.swift */; };
 		034DFA1429D95E5A0046720F /* ConfirmPaymentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA1329D95E5A0046720F /* ConfirmPaymentPresenter.swift */; };
 		034DFA1629D965070046720F /* Strings+ MoneyFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA1529D965070046720F /* Strings+ MoneyFormatting.swift */; };
+		03B4C5D829DA45FD0067FC53 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B4C5D729DA45FD0067FC53 /* Strings.swift */; };
 		03D6CFE729D7F21800E5735E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6CFE629D7F21800E5735E /* NetworkManager.swift */; };
 		03D6CFEB29D7F42300E5735E /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03D6CFEA29D7F42300E5735E /* Environment.plist */; };
 		03D6CFEE29D7F55500E5735E /* PlistHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6CFED29D7F55500E5735E /* PlistHelper.swift */; };
@@ -106,6 +107,7 @@
 		034DFA1129D95D130046720F /* ConfirmPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentViewController.swift; sourceTree = "<group>"; };
 		034DFA1329D95E5A0046720F /* ConfirmPaymentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentPresenter.swift; sourceTree = "<group>"; };
 		034DFA1529D965070046720F /* Strings+ MoneyFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+ MoneyFormatting.swift"; sourceTree = "<group>"; };
+		03B4C5D729DA45FD0067FC53 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		03D6CFE629D7F21800E5735E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		03D6CFEA29D7F42300E5735E /* Environment.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Environment.plist; sourceTree = "<group>"; };
 		03D6CFED29D7F55500E5735E /* PlistHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistHelper.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			children = (
 				03093F3829D7928300B4D28C /* UIViewController+ViewSetupProtocol.swift */,
 				034DFA1529D965070046720F /* Strings+ MoneyFormatting.swift */,
+				03B4C5D729DA45FD0067FC53 /* Strings.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				034DFA0629D8D79A0046720F /* CardIssuer.swift in Sources */,
+				03B4C5D829DA45FD0067FC53 /* Strings.swift in Sources */,
 				03093EEB29D7125600B4D28C /* AmountEntryViewController.swift in Sources */,
 				03093F2029D7302B00B4D28C /* BankSelectionViewController.swift in Sources */,
 				03D6CFF229D86AA500E5735E /* PaymentMethodTableViewCell.swift in Sources */,

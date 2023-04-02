@@ -20,11 +20,17 @@ extension String {
         // Format the integer part by adding thousands separators
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 2
         let formattedIntegerPart = numberFormatter.string(from: NSNumber(value: Int(integerPart) ?? 0))
         
         // Get the decimal part if it exists, and ensure it has exactly two decimal places
-        let decimalPart = components.count > 1 ? String(format: ".%02d", Int(components[1]) ?? 0) : ".00"
+        let decimalPart: String
+        if components.count > 1 {
+            let decimalValue = Double("0." + components[1]) ?? 0.0
+            decimalPart = String(String(format: "%.2f", decimalValue).dropFirst(1)) // Remove the leading 0
+        } else {
+            decimalPart = ".00"
+        }
         
         // Combine the formatted integer part and the decimal part
         let formattedInput = "$ " + (formattedIntegerPart ?? "") + decimalPart
