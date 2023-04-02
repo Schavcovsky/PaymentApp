@@ -9,7 +9,15 @@ import UIKit
 
 class PaymentCardFlowView: UIView {
     let userSelection: UserSelection
-
+    let displayOption: DisplayOption
+    
+    enum DisplayOption {
+        case amount
+        case amountPaymentMethod
+        case amountPaymentMethodBank
+        case amountPaymentMethodBankInstallment
+    }
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -23,12 +31,13 @@ class PaymentCardFlowView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = 24
         return stackView
     }()
     
-    init(title: String, userSelection: UserSelection) {
+    init(title: String, userSelection: UserSelection, displayOption: DisplayOption) {
         self.userSelection = userSelection
+        self.displayOption = displayOption
         super.init(frame: .zero)
         titleLabel.text = title
         setupViewHierarchy()
@@ -45,23 +54,44 @@ class PaymentCardFlowView: UIView {
         let paymentMethodItem = createItemCell(title: "Payment Method", value: userSelection.selectedPaymentMethod)
         let bankItem = createItemCell(title: "Bank", value: userSelection.selectedBank)
         let installmentsItem = createItemCell(title: "Installments", value: userSelection.selectedInstallment)
-        
+
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        
-        if let amount = userSelection.amount {
-            stackView.addArrangedSubview(amountItem)
-        }
-        
-        if let paymentMethod = userSelection.selectedPaymentMethod {
-            stackView.addArrangedSubview(paymentMethodItem)
-        }
-        
-        if let bank = userSelection.selectedBank {
-            stackView.addArrangedSubview(bankItem)
-        }
-        
-        if let installments = userSelection.selectedInstallment {
-            stackView.addArrangedSubview(installmentsItem)
+
+        switch displayOption {
+        case .amount:
+            if let _ = userSelection.amount {
+                stackView.addArrangedSubview(amountItem)
+            }
+        case .amountPaymentMethod:
+            if let _ = userSelection.amount {
+                stackView.addArrangedSubview(amountItem)
+            }
+            if let _ = userSelection.selectedPaymentMethod {
+                stackView.addArrangedSubview(paymentMethodItem)
+            }
+        case .amountPaymentMethodBank:
+            if let _ = userSelection.amount {
+                stackView.addArrangedSubview(amountItem)
+            }
+            if let _ = userSelection.selectedPaymentMethod {
+                stackView.addArrangedSubview(paymentMethodItem)
+            }
+            if let _ = userSelection.selectedBank {
+                stackView.addArrangedSubview(bankItem)
+            }
+        case .amountPaymentMethodBankInstallment:
+            if let _ = userSelection.amount {
+                stackView.addArrangedSubview(amountItem)
+            }
+            if let _ = userSelection.selectedPaymentMethod {
+                stackView.addArrangedSubview(paymentMethodItem)
+            }
+            if let _ = userSelection.selectedBank {
+                stackView.addArrangedSubview(bankItem)
+            }
+            if let _ = userSelection.selectedInstallment {
+                stackView.addArrangedSubview(installmentsItem)
+            }
         }
     }
     
@@ -71,14 +101,14 @@ class PaymentCardFlowView: UIView {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont.systemFont(ofSize: 16)
-        titleLabel.textColor = .black
+        titleLabel.textColor = .darkGray
         titleLabel.text = title
         
         let valueLabel = UILabel()
         valueLabel.translatesAutoresizingMaskIntoConstraints = false
         valueLabel.font = UIFont.systemFont(ofSize: 16)
         valueLabel.textColor = .black
-        valueLabel.text = value
+        valueLabel.text = value?.capitalized
         
         containerView.addSubview(titleLabel)
         containerView.addSubview(valueLabel)
@@ -98,7 +128,6 @@ class PaymentCardFlowView: UIView {
         addSubview(titleLabel)
         addSubview(stackView)
         
-        
         layer.cornerRadius = 8
         backgroundColor = .systemGray5
     }
@@ -109,7 +138,7 @@ class PaymentCardFlowView: UIView {
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
-            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])

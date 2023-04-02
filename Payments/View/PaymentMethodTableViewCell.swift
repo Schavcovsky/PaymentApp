@@ -44,7 +44,7 @@ class PaymentMethodTableViewCell: UITableViewCell {
     
     func configure(with paymentMethod: PaymentMethod) {
         nameLabel.text = paymentMethod.name
-        if let url = URL(string: paymentMethod.thumbnail) {
+        if let url = URL(string: paymentMethod.secureThumbnail) {
             thumbnailImageView.sd_setImage(with: url, completed: nil)
         }
     }
@@ -69,6 +69,5 @@ class PaymentMethodTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
 }

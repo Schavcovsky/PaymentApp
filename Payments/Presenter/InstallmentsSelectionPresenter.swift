@@ -17,5 +17,11 @@ typealias InstallmentsSelectionDelegate = InstallmentsSelectionViewProtocol & UI
 
 final class InstallmentsSelectionPresenter {
     weak var delegate: BankSelectionViewProtocol?
-    
+    let userSelection: UserSelection
+    private let paymentsMethodsInstallmentsService: PaymentsMethodsInstallmentsServiceProtocol
+
+    init(userSelection: UserSelection, service: PaymentsMethodsInstallmentsServiceProtocol = PaymentsMethodsInstallmentsService()) {
+        self.userSelection = userSelection
+        self.paymentsMethodsInstallmentsService = service
+    }
 }

@@ -11,15 +11,7 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
     private let presenter: PaymentTypePresenter
     private var paymentMethods: [PaymentMethod] = []
     private lazy var paymentCardFlowView = makePaymentCardFlow()
-
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(PaymentMethodTableViewCell.self, forCellReuseIdentifier: "PaymentMethodCell")
-        return tableView
-    }()
+    private lazy var paymentTableView = makePaymentTableView()
     
     init(presenter: PaymentTypePresenter) {
         self.presenter = presenter
@@ -49,13 +41,19 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedPaymentMethod = paymentMethods[indexPath.row]
+        presenter.userSelection.selectedPaymentMethod = selectedPaymentMethod.id
+        presenter.delegate?.navigateToBankSelectionViewController()
+    }
+    
     // MARK: - UITableViewDelegate methods
     // Add any UITableViewDelegate methods you need here
 
     // MARK: - PaymentTypeDelegate methods
     func displayPaymentMethods(paymentMethods: [PaymentMethod]) {
         self.paymentMethods = paymentMethods
-        tableView.reloadData()
+        paymentTableView.reloadData()
     }
     
     func showError(message: String) {
@@ -63,25 +61,33 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
     }
     
     func navigateToBankSelectionViewController() {
-        // Handle navigation
+        let bankSelectionPresenter = BankSelectionPresenter(userSelection: presenter.userSelection)
+        let bankSelectionViewController = BankSelectionViewController(presenter: bankSelectionPresenter)
+        navigationController?.pushViewController(bankSelectionViewController, animated: true)
     }
-    
 }
 
 // MARK: - Setting up UI
 extension PaymentTypeViewController {
     private func makePaymentCardFlow() -> PaymentCardFlowView {
-        let view = PaymentCardFlowView(title: "Estas cargando", userSelection: presenter.userSelection)
-
+        let view = PaymentCardFlowView(title: "Estas cargando", userSelection: presenter.userSelection, displayOption: .amount)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }
+    
+    private func makePaymentTableView() -> PaymentsTableView {
+        let tableView = PaymentsTableView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PaymentMethodTableViewCell.self, forCellReuseIdentifier: "PaymentMethodCell")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }
     
     // MARK: - ViewSetupProtocol methods
     func setupViews() {
         view.addSubview(paymentCardFlowView)
-        view.addSubview(tableView)
-        setupConstraints()
+        view.addSubview(paymentTableView)
     }
     
     func setupConstraints() {
@@ -89,12 +95,12 @@ extension PaymentTypeViewController {
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 80),
+            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 100),
 
-            tableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            paymentTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
+            paymentTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            paymentTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            paymentTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }

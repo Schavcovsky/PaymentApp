@@ -8,6 +8,7 @@ target 'Payments' do
   # Pods for Payments
   pod 'Alamofire'
   pod 'SDWebImage', '~> 5.0'
+  pod 'SDWebImageSVGKitPlugin'
 
   target 'PaymentsTests' do
     inherit! :search_paths

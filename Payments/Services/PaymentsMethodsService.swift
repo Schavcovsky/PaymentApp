@@ -5,7 +5,6 @@
 //  Created by Alejandro Villalobos on 31-03-23.
 //
 
-import Foundation
 import Alamofire
 
 // MARK: - PaymentsMethodsServiceProtocol
