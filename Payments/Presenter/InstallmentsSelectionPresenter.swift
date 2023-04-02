@@ -33,8 +33,8 @@ final class InstallmentsSelectionPresenter {
             case .success(let installments):
                 self?.installments = installments.first?.payerCosts ?? []
                 self?.delegate?.displayInstallments()
-            case .failure(let error):
-                self?.delegate?.showError(message: error.localizedDescription)
+            case .failure(_):
+                self?.delegate?.showError(message: "Lo sentimos, no se pudieron obtener los datos. Verifique su conexión a Internet y vuelva a intentarlo.")
             }
         }
     }

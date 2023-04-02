@@ -32,8 +32,8 @@ final class PaymentTypePresenter {
                 case .success(let paymentMethods):
                     let filteredPaymentMethods = paymentMethods.filter { $0.paymentTypeID == .creditCard }
                     self?.delegate?.displayPaymentMethods(paymentMethods: filteredPaymentMethods)
-                case .failure(let error):
-                    self?.delegate?.showError(message: error.localizedDescription)
+                case .failure(_):
+                    self?.delegate?.showError(message: "Lo sentimos, no se pudieron obtener los datos. Verifique su conexión a Internet y vuelva a intentarlo.")
                 }
             }
         }

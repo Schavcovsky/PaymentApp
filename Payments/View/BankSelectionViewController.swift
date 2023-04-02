@@ -11,6 +11,7 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
     private let presenter: BankSelectionPresenter
     private var banks: [CardIssuer] = []
     private lazy var activityIndicator = makeActivityIndicator()
+    private lazy var errorLabel = makeErrorLabel()
     private lazy var paymentCardFlowView = makePaymentCardFlow()
     private lazy var banksTableView = makeBanksTableView()
     private var bankTableViewHeightConstraint: NSLayoutConstraint?
@@ -77,6 +78,9 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
 
     func showError(message: String) {
         hideActivityIndicator()
+        paymentCardFlowView.isHidden = true
+        errorLabel.text = message
+        errorLabel.isHidden = false
     }
 
     func navigateToInstallmentSelectionViewController() {
@@ -93,6 +97,17 @@ extension BankSelectionViewController {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.hidesWhenStopped = true
         return indicator
+    }
+    
+    private func makeErrorLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 14)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.isHidden = true
+        return label
     }
     
     private func makePaymentCardFlow() -> PaymentCardFlowView {
@@ -114,6 +129,7 @@ extension BankSelectionViewController {
     // MARK: - ViewSetupProtocol methods
     func setupViews() {
         view.addSubview(activityIndicator)
+        view.addSubview(errorLabel)
         view.addSubview(paymentCardFlowView)
         view.addSubview(banksTableView)
     }
@@ -126,6 +142,11 @@ extension BankSelectionViewController {
             
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            errorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
             banksTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             banksTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),

@@ -31,9 +31,8 @@ final class BankSelectionPresenter {
                 switch result {
                 case .success(let paymentMethodCardIssuer):
                     self?.delegate?.displayBanks(banks: paymentMethodCardIssuer)
-                case .failure(let error):
-                    print(error)
-                    self?.delegate?.showError(message: error.localizedDescription)
+                case .failure(let _):
+                    self?.delegate?.showError(message: "Lo sentimos, no se pudieron obtener los datos. Verifique su conexión a Internet y vuelva a intentarlo.")
                 }
             }
         }
