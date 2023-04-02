@@ -7,80 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "79A1D3EB-4114-470F-9CD0-7A55CFAC75E0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Payments/Presenter/InstallmentsSelectionPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "getInstallments()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "79A1D3EB-4114-470F-9CD0-7A55CFAC75E0 - f0296a280581c3f5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Payments.InstallmentsSelectionPresenter.getInstallments() -&gt; ()"
-                  moduleName = "Payments"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/Payments/Presenter/InstallmentsSelectionPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  uuid = "79A1D3EB-4114-470F-9CD0-7A55CFAC75E0 - ffaf24e38aeeb6b1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Payments.Installments&gt;, Swift.Error&gt;) -&gt; () in Payments.InstallmentsSelectionPresenter.getInstallments() -&gt; ()"
-                  moduleName = "Payments"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/Payments/Presenter/InstallmentsSelectionPresenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "88">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "550F73FA-1840-484E-BD1F-A9380C655F1A"
+            uuid = "1410AC93-AC80-4194-AE60-F2FEEC23EBAF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Payments/Presenter/InstallmentsSelectionPresenter.swift"
+            filePath = "Payments/View/PaymentTypeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "getInstallments()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "83249883-E955-41BB-8F4A-415919433138"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Payments/Presenter/InstallmentsSelectionPresenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "getInstallments()"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -7,8 +7,9 @@
 
 import UIKit
 
+// MARK: - InstallmentsSelectionViewProtocol
 protocol InstallmentsSelectionViewProtocol: AnyObject {
-    func displayInstallments(installments: [Installments.PayerCost])
+    func displayInstallments()
     func showError(message: String)
     func navigateToBankSelectionViewController()
 }
@@ -31,7 +32,7 @@ final class InstallmentsSelectionPresenter {
             switch result {
             case .success(let installments):
                 self?.installments = installments.first?.payerCosts ?? []
-                self?.delegate?.displayInstallments(installments: self?.installments ?? [])
+                self?.delegate?.displayInstallments()
             case .failure(let error):
                 self?.delegate?.showError(message: error.localizedDescription)
             }

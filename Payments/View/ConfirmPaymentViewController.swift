@@ -25,10 +25,6 @@ class ConfirmPaymentViewController: ConfirmPaymentDelegate, ViewSetupProtocol {
         super.viewDidLoad()
         setupViewHierarchy()
     }
-    
-    func confirmTransaction() {
-        
-    }
 }
 
 // MARK: - Setting up UI

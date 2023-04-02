@@ -7,9 +7,11 @@
 
 import UIKit
 
+// MARK: - PaymentTypeViewController
 class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetupProtocol, UITableViewDataSource, UITableViewDelegate {
     private let presenter: PaymentTypePresenter
     private var paymentMethods: [PaymentMethod] = []
+    private lazy var activityIndicator = makeActivityIndicator()
     private lazy var paymentCardFlowView = makePaymentCardFlow()
     private lazy var paymentTableView = makePaymentTableView()
     private var paymentTableViewHeightConstraint: NSLayoutConstraint?
@@ -25,18 +27,32 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewHierarchy()
         presenter.delegate = self
+        setupViewHierarchy()
+        showActivityIndicator()
         presenter.fetchPaymentMethods()
+        configureBackButton()
+    }
+    
+    private func configureBackButton() {
         let backButton = UIBarButtonItem(title: "Métodos de Pago", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
-    // MARK: - UITableViewDataSource methods
+    func showActivityIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return paymentMethods.count
     }
     
+    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodTableViewCell
         let paymentMethod = paymentMethods[indexPath.row]
@@ -44,24 +60,23 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
         return cell
     }
     
+    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPaymentMethod = paymentMethods[indexPath.row]
         presenter.userSelection.updatePaymentMethod(id: selectedPaymentMethod.id, name: selectedPaymentMethod.name)
         presenter.delegate?.navigateToBankSelectionViewController()
     }
-    
-    // MARK: - UITableViewDelegate methods
-    // Add any UITableViewDelegate methods you need here
 
-    // MARK: - PaymentTypeDelegate methods
+    // MARK: - PaymentTypeDelegate
     func displayPaymentMethods(paymentMethods: [PaymentMethod]) {
+        hideActivityIndicator()
         self.paymentMethods = paymentMethods
         paymentTableView.reloadData()
         updateTableViewHeight()
     }
     
     func showError(message: String) {
-        // Handle error display
+        hideActivityIndicator()
     }
     
     func navigateToBankSelectionViewController() {
@@ -73,6 +88,13 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
 
 // MARK: - Setting up UI
 extension PaymentTypeViewController {
+    private func makeActivityIndicator() -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }
+    
     private func makePaymentCardFlow() -> PaymentCardFlowView {
         let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amount)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -90,6 +112,7 @@ extension PaymentTypeViewController {
     
     // MARK: - ViewSetupProtocol methods
     func setupViews() {
+        view.addSubview(activityIndicator)
         view.addSubview(paymentCardFlowView)
         view.addSubview(paymentTableView)
     }
@@ -99,6 +122,9 @@ extension PaymentTypeViewController {
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
             paymentTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             paymentTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),

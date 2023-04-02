@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ConfirmPaymentViewProtocol: AnyObject {
-    func confirmTransaction()
+    
 }
 
 typealias ConfirmPaymentDelegate = ConfirmPaymentViewProtocol & UIViewController

@@ -22,21 +22,20 @@ typealias AmountEntryDelegate = AmountEntryViewProtocol & UIViewController
 final class AmountEntryPresenter {
     weak var delegate: AmountEntryViewProtocol?
     let userSelection: UserSelection
-    var amount: Double?
+    var amount: String?
     
     init(userSelection: UserSelection) {
         self.userSelection = userSelection
     }
     
     func isValidAmount() -> Bool {
-        guard let amount = self.amount else { return false }
+        guard let amount = Int(self.amount ?? "") else { return false }
         return (500...2500000).contains(amount)
     }
     
     func saveAmount() {
         if let amount = amount {
-            let amountString = String(amount)
-            userSelection.updateAmount(amountString)
+            userSelection.updateAmount(amount)
         }
     }
     

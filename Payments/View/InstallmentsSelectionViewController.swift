@@ -9,6 +9,7 @@ import UIKit
 
 class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSetupProtocol, UITableViewDataSource, UITableViewDelegate {
     private let presenter: InstallmentsSelectionPresenter
+    private lazy var activityIndicator = makeActivityIndicator()
     private lazy var paymentCardFlowView = makePaymentCardFlow()
     private lazy var installmentsTableView = makeInstallmentsTableView()
     private var installmentsTableViewHeightConstraint: NSLayoutConstraint?
@@ -24,30 +25,32 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewHierarchy()
         presenter.delegate = self
+        setupViewHierarchy()
+        showActivityIndicator()
         presenter.getInstallments()
+        configureBackButton()
+    }
+    
+    private func configureBackButton() {
         let backButton = UIBarButtonItem(title: "Cuotas", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
-    func displayInstallments(installments: [Installments.PayerCost]) {
-        installmentsTableView.reloadData()
-        updateTableViewHeight()
+    func showActivityIndicator() {
+        activityIndicator.startAnimating()
     }
     
-    func showError(message: String) {
-        
+    func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
     }
     
-    func navigateToAmountEntryViewController(with userSelection: [String]) {
-        
-    }
-    
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.installments.count
     }
     
+    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InstallmentsTableViewCell", for: indexPath) as! InstallmentsTableViewCell
         let payerCost = presenter.installments[indexPath.row]
@@ -55,10 +58,22 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
         return cell
     }
     
+    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedInstallment = presenter.installments[indexPath.row]
         presenter.userSelection.updateInstallmentData(installment: selectedInstallment.installments, totalAmount: String(selectedInstallment.totalAmount))
         presenter.delegate?.navigateToBankSelectionViewController()
+    }
+    
+    // MARK: - InstallmentsSelectionDelegate
+    func displayInstallments() {
+        hideActivityIndicator()
+        installmentsTableView.reloadData()
+        updateTableViewHeight()
+    }
+    
+    func showError(message: String) {
+        hideActivityIndicator()
     }
     
     func navigateToBankSelectionViewController() {
@@ -70,6 +85,13 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
 
 // MARK: - Setting up UI
 extension InstallmentsSelectionViewController {
+    private func makeActivityIndicator() -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }
+    
     private func makePaymentCardFlow() -> PaymentCardFlowView {
         let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethodBank)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -85,8 +107,10 @@ extension InstallmentsSelectionViewController {
         tableView.backgroundColor = .clear
         return tableView
     }
-
+    
+    // MARK: - ViewSetupProtocol methods
     func setupViews() {
+        view.addSubview(activityIndicator)
         view.addSubview(paymentCardFlowView)
         view.addSubview(installmentsTableView)
     }
@@ -97,6 +121,9 @@ extension InstallmentsSelectionViewController {
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
             installmentsTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             installmentsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             installmentsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
@@ -105,7 +132,6 @@ extension InstallmentsSelectionViewController {
         installmentsTableViewHeightConstraint = installmentsTableView.heightAnchor.constraint(equalToConstant: 0)
         installmentsTableViewHeightConstraint?.isActive = true
     }
-    
     
     private func updateTableViewHeight() {
         DispatchQueue.main.async {

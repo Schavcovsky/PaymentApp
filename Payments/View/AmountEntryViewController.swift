@@ -25,22 +25,23 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad()  {
         super.viewDidLoad()
+        presenter.delegate = self
         setupViewHierarchy()
         addGestureRecognizer()
         errorLabel.isHidden = true
-        
-        let backButton = UIBarButtonItem(title: "Inicio", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backButton
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        configureBackButton()
+        setupNotificationObservers()
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        removeNotificationObservers()
+    }
+    
+    private func configureBackButton() {
+        let backButton = UIBarButtonItem(title: "Inicio", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
     }
         
     func addGestureRecognizer() {
@@ -48,7 +49,18 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
         view.addGestureRecognizer(tapRecognizer)
     }
     
-    private func updateUIForAmount(_ amount: Double) {
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    private func removeNotificationObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    // MARK: - AmountEntryDelegate
+    private func updateUIForAmount(_ amount: String) {
         presenter.amount = amount
         let isValidAmount = presenter.isValidAmount()
         continueButton.isEnabled = isValidAmount
@@ -79,10 +91,10 @@ extension AmountEntryViewController {
         textField.textAlignment = .center
         textField.borderStyle = .roundedRect
         textField.placeholder = ViewStringConstants.AmountEntry.amountPlaceholder
-        textField.inputType = .double
+        textField.inputType = .integer
         textField.delegate = self
         textField.onAmountChanged = { [weak self] amount in
-            self?.updateUIForAmount(amount)
+            self?.updateUIForAmount(String(amount))
         }
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField

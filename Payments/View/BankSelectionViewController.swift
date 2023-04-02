@@ -10,6 +10,7 @@ import UIKit
 class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UITableViewDataSource, UITableViewDelegate {
     private let presenter: BankSelectionPresenter
     private var banks: [CardIssuer] = []
+    private lazy var activityIndicator = makeActivityIndicator()
     private lazy var paymentCardFlowView = makePaymentCardFlow()
     private lazy var banksTableView = makeBanksTableView()
     private var bankTableViewHeightConstraint: NSLayoutConstraint?
@@ -26,43 +27,56 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewHierarchy()
         presenter.delegate = self
+        setupViewHierarchy()
+        showActivityIndicator()
         presenter.fetchPaymentMethodCardIssuer()
+        configureBackButton()
+    }
+    
+    private func configureBackButton() {
         let backButton = UIBarButtonItem(title: "Banco", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
-    // MARK: - UITableViewDataSource methods
+    func showActivityIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return banks.count
     }
-
+    
+    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BankCell", for: indexPath) as! BankTableViewCell
         let bank = banks[indexPath.row]
         cell.configure(with: bank)
         return cell
     }
-
+    
+    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBank = banks[indexPath.row]
         presenter.userSelection.updateBank(id: selectedBank.id, name: selectedBank.name)
         presenter.delegate?.navigateToInstallmentSelectionViewController()
     }
 
-    // MARK: - UITableViewDelegate methods
-    // Add any UITableViewDelegate methods you need here
-
     // MARK: - BankSelectionDelegate methods
     func displayBanks(banks: [CardIssuer]) {
+        hideActivityIndicator()
         self.banks = banks
         banksTableView.reloadData()
         self.updateTableViewHeight()
     }
 
     func showError(message: String) {
-        // Handle error display
+        hideActivityIndicator()
     }
 
     func navigateToInstallmentSelectionViewController() {
@@ -74,6 +88,13 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
 
 // MARK: - Setting up UI
 extension BankSelectionViewController {
+    private func makeActivityIndicator() -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }
+    
     private func makePaymentCardFlow() -> PaymentCardFlowView {
         let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethod)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +113,7 @@ extension BankSelectionViewController {
     
     // MARK: - ViewSetupProtocol methods
     func setupViews() {
+        view.addSubview(activityIndicator)
         view.addSubview(paymentCardFlowView)
         view.addSubview(banksTableView)
     }
@@ -101,6 +123,9 @@ extension BankSelectionViewController {
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
             banksTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             banksTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
