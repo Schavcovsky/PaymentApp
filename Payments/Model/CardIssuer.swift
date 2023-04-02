@@ -29,6 +29,5 @@ struct CardIssuer: Codable {
     enum Status: String, Codable {
         case active = "active"
     }
-
 }
 

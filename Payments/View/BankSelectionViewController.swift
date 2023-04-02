@@ -43,7 +43,7 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBank = banks[indexPath.row]
-        presenter.userSelection.selectedBank = selectedBank.name
+        presenter.userSelection.selectedBank = [selectedBank.id: selectedBank.name]
         presenter.delegate?.navigateToInstallmentSelectionViewController()
     }
 

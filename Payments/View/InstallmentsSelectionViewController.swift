@@ -7,9 +7,10 @@
 
 import UIKit
 
-class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSetupProtocol {
+class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSetupProtocol, UITableViewDataSource, UITableViewDelegate {
     private let presenter: InstallmentsSelectionPresenter
     private lazy var paymentCardFlowView = makePaymentCardFlow()
+    private lazy var installmentsTableView = makeInstallmentsTableView()
 
     init(presenter: InstallmentsSelectionPresenter) {
         self.presenter = presenter
@@ -23,10 +24,12 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewHierarchy()
+        presenter.delegate = self
+        presenter.getInstallments()
     }
     
-    func displayInstallments(installments: [Int]) {
-        
+    func displayInstallments(installments: [Installments.PayerCost]) {
+        installmentsTableView.reloadData()
     }
     
     func showError(message: String) {
@@ -35,6 +38,17 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
     
     func navigateToAmountEntryViewController(with userSelection: [String]) {
         
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.installments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InstallmentsTableViewCell", for: indexPath) as! InstallmentsTableViewCell
+        let payerCost = presenter.installments[indexPath.row]
+        cell.configure(with: payerCost)
+        return cell
     }
 }
 
@@ -46,8 +60,18 @@ extension InstallmentsSelectionViewController {
         return view
     }
     
+    private func makeInstallmentsTableView() -> PaymentsTableView {
+        let tableView = PaymentsTableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(InstallmentsTableViewCell.self, forCellReuseIdentifier: "InstallmentsTableViewCell")
+        return tableView
+    }
+
     func setupViews() {
         view.addSubview(paymentCardFlowView)
+        view.addSubview(installmentsTableView)
     }
     
     func setupConstraints() {
@@ -56,6 +80,11 @@ extension InstallmentsSelectionViewController {
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             paymentCardFlowView.heightAnchor.constraint(equalToConstant: 150),
+            
+            installmentsTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
+            installmentsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            installmentsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            installmentsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

@@ -52,7 +52,7 @@ class PaymentCardFlowView: UIView {
     func updateData() {
         let amountItem = createItemCell(title: "Amount", value: userSelection.amount.map { "$\($0)" })
         let paymentMethodItem = createItemCell(title: "Payment Method", value: userSelection.selectedPaymentMethod)
-        let bankItem = createItemCell(title: "Bank", value: userSelection.selectedBank)
+        let bankItem = createItemCell(title: "Bank", value: userSelection.selectedBank?.first?.value)
         let installmentsItem = createItemCell(title: "Installments", value: userSelection.selectedInstallment)
 
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }

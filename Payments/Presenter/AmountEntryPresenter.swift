@@ -28,6 +28,6 @@ final class AmountEntryPresenter {
     }
     
     func saveAmount() {
-        userSelection.amount = Double(self.amount ?? Int(0.0))
+        userSelection.amount = self.amount
     }
 }

@@ -6,8 +6,8 @@
 //
 
 class UserSelection {
-    var amount: Double?
+    var amount: Int?
     var selectedPaymentMethod: String?
-    var selectedBank: String?
+    var selectedBank: [String: String]?
     var selectedInstallment: String?
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import SDWebImageSVGKitPlugin
 
 class PaymentMethodTableViewCell: UITableViewCell {
 
@@ -45,6 +46,7 @@ class PaymentMethodTableViewCell: UITableViewCell {
     func configure(with paymentMethod: PaymentMethod) {
         nameLabel.text = paymentMethod.name
         if let url = URL(string: paymentMethod.secureThumbnail) {
+            SDImageCodersManager.shared.addCoder(SDImageSVGKCoder.shared)
             thumbnailImageView.sd_setImage(with: url, completed: nil)
         }
     }
