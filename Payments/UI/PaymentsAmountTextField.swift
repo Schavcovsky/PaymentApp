@@ -9,7 +9,7 @@ import UIKit
 
 enum InputType {
     case text
-    case integer
+    case double
 }
 
 class PaymentAmountTextField: UITextField {
@@ -19,12 +19,12 @@ class PaymentAmountTextField: UITextField {
         }
     }
     
-    var onAmountChanged: ((Int) -> Void)?
+    var onAmountChanged: ((Double) -> Void)?
 
-    var numericAmount: Int {
+    var numericAmount: Double {
         guard let text = text else { return 0 }
         let numericString = text.filter { $0.isNumber }
-        return Int(numericString) ?? 0
+        return Double(numericString) ?? 0.0
     }
     
     var placeholderText: String?
@@ -50,7 +50,7 @@ class PaymentAmountTextField: UITextField {
         switch inputType {
         case .text:
             keyboardType = .default
-        case .integer:
+        case .double:
             keyboardType = .numberPad
         }
     }
@@ -58,7 +58,7 @@ class PaymentAmountTextField: UITextField {
     @objc private func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
         
-        if inputType == .integer {
+        if inputType == .double {
             let numericString = text.filter { $0.isNumber }
             if let firstChar = numericString.first, firstChar == "0" {
                 textField.text = String(numericString.dropFirst())
@@ -75,7 +75,7 @@ class PaymentAmountTextField: UITextField {
     }
     
     private func formatAsMoney(numericString: String) -> String {
-        guard let intValue = Int(numericString) else { return "" }
+        guard let intValue = Double(numericString) else { return "" }
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.groupingSeparator = "."

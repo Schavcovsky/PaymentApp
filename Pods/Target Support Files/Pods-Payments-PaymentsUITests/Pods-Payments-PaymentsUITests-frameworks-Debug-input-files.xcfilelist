@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-Payments-PaymentsUITests/Pods-Payments-PaymentsUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SDWebImageSVGKitPlugin/SDWebImageSVGKitPlugin.framework
+${BUILT_PRODUCTS_DIR}/SVGKit/SVGKit.framework
