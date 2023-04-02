@@ -31,7 +31,7 @@ class PaymentCardFlowView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 24
+        stackView.spacing = 28
         return stackView
     }()
     
@@ -50,10 +50,11 @@ class PaymentCardFlowView: UIView {
     }
     
     func updateData() {
-        let amountItem = createItemCell(title: "Monto", value: userSelection.amount.map { "$\($0)" })
+        let amountItem = createItemCell(title: "Monto", value: userSelection.amount.map { "\($0)".formatAsMoney() })
         let paymentMethodItem = createItemCell(title: "Método de Pago", value: userSelection.paymentMethodName)
         let bankItem = createItemCell(title: "Banco", value: userSelection.bankName)
         let installmentsItem = createItemCell(title: "Cuotas", value: userSelection.selectedInstallment)
+        let amountInterestItem = createItemCell(title: "Monto Total", value: userSelection.amountInterest.map { "\($0)".formatAsMoney() })
 
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
@@ -89,8 +90,11 @@ class PaymentCardFlowView: UIView {
             if let _ = userSelection.bankId {
                 stackView.addArrangedSubview(bankItem)
             }
-            if let _ = userSelection.selectedInstallment {
+            if let selectedInstallment = userSelection.selectedInstallment, Int(selectedInstallment) ?? 0 > 1 {
                 stackView.addArrangedSubview(installmentsItem)
+                if let _ = userSelection.amountInterest {
+                    stackView.addArrangedSubview(amountInterestItem)
+                }
             }
         }
     }

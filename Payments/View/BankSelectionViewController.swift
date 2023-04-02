@@ -71,7 +71,7 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
 // MARK: - Setting up UI
 extension BankSelectionViewController {
     private func makePaymentCardFlow() -> PaymentCardFlowView {
-        let view = PaymentCardFlowView(title: "Estas cargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethod)
+        let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethod)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
@@ -97,7 +97,7 @@ extension BankSelectionViewController {
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 120),
+            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 130),
 
             banksTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             banksTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),

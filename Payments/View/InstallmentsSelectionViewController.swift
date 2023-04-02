@@ -50,12 +50,25 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
         cell.configure(with: payerCost)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedInstallment = presenter.installments[indexPath.row]
+        presenter.userSelection.selectedInstallment = String(selectedInstallment.installments)
+        presenter.userSelection.amountInterest = selectedInstallment.totalAmount
+        presenter.delegate?.navigateToBankSelectionViewController()
+    }
+    
+    func navigateToBankSelectionViewController() {
+        let confirmPresenter = ConfirmPaymentPresenter(userSelection: presenter.userSelection)
+        let confirmSelectionViewController = ConfirmPaymentViewController(presenter: confirmPresenter)
+        navigationController?.pushViewController(confirmSelectionViewController, animated: true)
+    }
 }
 
 // MARK: - Setting up UI
 extension InstallmentsSelectionViewController {
     private func makePaymentCardFlow() -> PaymentCardFlowView {
-        let view = PaymentCardFlowView(title: "Estas cargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethodBank)
+        let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethodBank)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }

@@ -38,6 +38,9 @@
 		034DFA0C29D9018E0046720F /* BankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA0B29D9018E0046720F /* BankTableViewCell.swift */; };
 		034DFA0E29D919D30046720F /* InstallmentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA0D29D919D30046720F /* InstallmentsTableViewCell.swift */; };
 		034DFA1029D91D4C0046720F /* Installments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA0F29D91D4C0046720F /* Installments.swift */; };
+		034DFA1229D95D130046720F /* ConfirmPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA1129D95D130046720F /* ConfirmPaymentViewController.swift */; };
+		034DFA1429D95E5A0046720F /* ConfirmPaymentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA1329D95E5A0046720F /* ConfirmPaymentPresenter.swift */; };
+		034DFA1629D965070046720F /* Strings+ MoneyFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA1529D965070046720F /* Strings+ MoneyFormatting.swift */; };
 		03D6CFE729D7F21800E5735E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6CFE629D7F21800E5735E /* NetworkManager.swift */; };
 		03D6CFEB29D7F42300E5735E /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03D6CFEA29D7F42300E5735E /* Environment.plist */; };
 		03D6CFEE29D7F55500E5735E /* PlistHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6CFED29D7F55500E5735E /* PlistHelper.swift */; };
@@ -100,6 +103,9 @@
 		034DFA0B29D9018E0046720F /* BankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankTableViewCell.swift; sourceTree = "<group>"; };
 		034DFA0D29D919D30046720F /* InstallmentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallmentsTableViewCell.swift; sourceTree = "<group>"; };
 		034DFA0F29D91D4C0046720F /* Installments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Installments.swift; sourceTree = "<group>"; };
+		034DFA1129D95D130046720F /* ConfirmPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentViewController.swift; sourceTree = "<group>"; };
+		034DFA1329D95E5A0046720F /* ConfirmPaymentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentPresenter.swift; sourceTree = "<group>"; };
+		034DFA1529D965070046720F /* Strings+ MoneyFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+ MoneyFormatting.swift"; sourceTree = "<group>"; };
 		03D6CFE629D7F21800E5735E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		03D6CFEA29D7F42300E5735E /* Environment.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Environment.plist; sourceTree = "<group>"; };
 		03D6CFED29D7F55500E5735E /* PlistHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistHelper.swift; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 				03093F2F29D7374600B4D28C /* PaymentTypePresenter.swift */,
 				03093F3129D7374F00B4D28C /* BankSelectionPresenter.swift */,
 				03093F3329D7375F00B4D28C /* InstallmentsSelectionPresenter.swift */,
+				034DFA1329D95E5A0046720F /* ConfirmPaymentPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -253,6 +260,7 @@
 				034DFA0B29D9018E0046720F /* BankTableViewCell.swift */,
 				03093F2129D7303700B4D28C /* InstallmentsSelectionViewController.swift */,
 				034DFA0D29D919D30046720F /* InstallmentsTableViewCell.swift */,
+				034DFA1129D95D130046720F /* ConfirmPaymentViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -278,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				03093F3829D7928300B4D28C /* UIViewController+ViewSetupProtocol.swift */,
+				034DFA1529D965070046720F /* Strings+ MoneyFormatting.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -577,7 +586,9 @@
 				03093F2029D7302B00B4D28C /* BankSelectionViewController.swift in Sources */,
 				03D6CFF229D86AA500E5735E /* PaymentMethodTableViewCell.swift in Sources */,
 				034DFA0029D8AD4B0046720F /* PaymentCardFlowView.swift in Sources */,
+				034DFA1429D95E5A0046720F /* ConfirmPaymentPresenter.swift in Sources */,
 				03093F3929D7928300B4D28C /* UIViewController+ViewSetupProtocol.swift in Sources */,
+				034DFA1229D95D130046720F /* ConfirmPaymentViewController.swift in Sources */,
 				03D6CFE729D7F21800E5735E /* NetworkManager.swift in Sources */,
 				034DFA0E29D919D30046720F /* InstallmentsTableViewCell.swift in Sources */,
 				03093F3229D7374F00B4D28C /* BankSelectionPresenter.swift in Sources */,
@@ -588,6 +599,7 @@
 				03093F3D29D7A3D500B4D28C /* PaymentsAmountTextField.swift in Sources */,
 				03093F3429D7375F00B4D28C /* InstallmentsSelectionPresenter.swift in Sources */,
 				03093F4529D7DD4C00B4D28C /* PaymentsLabel.swift in Sources */,
+				034DFA1629D965070046720F /* Strings+ MoneyFormatting.swift in Sources */,
 				03093F3629D7379E00B4D28C /* PaymentsMethodsService.swift in Sources */,
 				03093F2E29D7373400B4D28C /* AmountEntryPresenter.swift in Sources */,
 				03093F2229D7303700B4D28C /* InstallmentsSelectionViewController.swift in Sources */,

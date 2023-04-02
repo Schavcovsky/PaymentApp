@@ -12,4 +12,5 @@ class UserSelection {
     var bankName: String?
     var bankId: String?
     var selectedInstallment: String?
+    var amountInterest: Double?
 }

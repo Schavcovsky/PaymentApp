@@ -71,7 +71,7 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
 // MARK: - Setting up UI
 extension PaymentTypeViewController {
     private func makePaymentCardFlow() -> PaymentCardFlowView {
-        let view = PaymentCardFlowView(title: "Estas cargando", userSelection: presenter.userSelection, displayOption: .amount)
+        let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amount)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }

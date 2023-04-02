@@ -10,7 +10,7 @@ import UIKit
 protocol InstallmentsSelectionViewProtocol: AnyObject {
     func displayInstallments(installments: [Installments.PayerCost])
     func showError(message: String)
-    func navigateToAmountEntryViewController(with userSelection: [String])
+    func navigateToBankSelectionViewController()
 }
 
 typealias InstallmentsSelectionDelegate = InstallmentsSelectionViewProtocol & UIViewController
