@@ -11,7 +11,8 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
     private let presenter: InstallmentsSelectionPresenter
     private lazy var paymentCardFlowView = makePaymentCardFlow()
     private lazy var installmentsTableView = makeInstallmentsTableView()
-
+    private var installmentsTableViewHeightConstraint: NSLayoutConstraint?
+    
     init(presenter: InstallmentsSelectionPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -32,6 +33,7 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
     
     func displayInstallments(installments: [Installments.PayerCost]) {
         installmentsTableView.reloadData()
+        updateTableViewHeight()
     }
     
     func showError(message: String) {
@@ -97,8 +99,18 @@ extension InstallmentsSelectionViewController {
             
             installmentsTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             installmentsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            installmentsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            installmentsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+            installmentsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
+        
+        installmentsTableViewHeightConstraint = installmentsTableView.heightAnchor.constraint(equalToConstant: 0)
+        installmentsTableViewHeightConstraint?.isActive = true
+    }
+    
+    
+    private func updateTableViewHeight() {
+        DispatchQueue.main.async {
+            self.installmentsTableViewHeightConstraint?.constant = self.installmentsTableView.contentSize.height
+            self.view.layoutIfNeeded()
+        }
     }
 }

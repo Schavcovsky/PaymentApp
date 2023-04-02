@@ -29,7 +29,7 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
         setupViewHierarchy()
         presenter.delegate = self
         presenter.fetchPaymentMethodCardIssuer()
-        let backButton = UIBarButtonItem(title: "Inicio", style: .plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: "Banco", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
