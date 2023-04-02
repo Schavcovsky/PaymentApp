@@ -288,8 +288,8 @@
 				03093F3C29D7A3D500B4D28C /* PaymentsAmountTextField.swift */,
 				03093F3E29D7AE8F00B4D28C /* PaymentsButton.swift */,
 				03093F4429D7DD4C00B4D28C /* PaymentsLabel.swift */,
-				034DF9FF29D8AD4B0046720F /* PaymentCardFlowView.swift */,
 				034DFA0729D8DAF50046720F /* PaymentsTableView.swift */,
+				034DF9FF29D8AD4B0046720F /* PaymentCardFlowView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";

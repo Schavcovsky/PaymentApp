@@ -50,10 +50,10 @@ class PaymentCardFlowView: UIView {
     }
     
     func updateData() {
-        let amountItem = createItemCell(title: "Amount", value: userSelection.amount.map { "$\($0)" })
-        let paymentMethodItem = createItemCell(title: "Payment Method", value: userSelection.selectedPaymentMethod?.first?.key)
-        let bankItem = createItemCell(title: "Bank", value: userSelection.selectedBank)
-        let installmentsItem = createItemCell(title: "Installments", value: userSelection.selectedInstallment)
+        let amountItem = createItemCell(title: "Monto", value: userSelection.amount.map { "$\($0)" })
+        let paymentMethodItem = createItemCell(title: "Método de Pago", value: userSelection.paymentMethodName)
+        let bankItem = createItemCell(title: "Banco", value: userSelection.bankName)
+        let installmentsItem = createItemCell(title: "Cuotas", value: userSelection.selectedInstallment)
 
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
@@ -66,27 +66,27 @@ class PaymentCardFlowView: UIView {
             if let _ = userSelection.amount {
                 stackView.addArrangedSubview(amountItem)
             }
-            if let _ = userSelection.selectedPaymentMethod {
+            if let _ = userSelection.paymentMethodId {
                 stackView.addArrangedSubview(paymentMethodItem)
             }
         case .amountPaymentMethodBank:
             if let _ = userSelection.amount {
                 stackView.addArrangedSubview(amountItem)
             }
-            if let _ = userSelection.selectedPaymentMethod {
+            if let _ = userSelection.paymentMethodId {
                 stackView.addArrangedSubview(paymentMethodItem)
             }
-            if let _ = userSelection.selectedBank {
+            if let _ = userSelection.bankId {
                 stackView.addArrangedSubview(bankItem)
             }
         case .amountPaymentMethodBankInstallment:
             if let _ = userSelection.amount {
                 stackView.addArrangedSubview(amountItem)
             }
-            if let _ = userSelection.selectedPaymentMethod {
+            if let _ = userSelection.paymentMethodId {
                 stackView.addArrangedSubview(paymentMethodItem)
             }
-            if let _ = userSelection.selectedBank {
+            if let _ = userSelection.bankId {
                 stackView.addArrangedSubview(bankItem)
             }
             if let _ = userSelection.selectedInstallment {

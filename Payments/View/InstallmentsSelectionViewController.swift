@@ -66,6 +66,7 @@ extension InstallmentsSelectionViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(InstallmentsTableViewCell.self, forCellReuseIdentifier: "InstallmentsTableViewCell")
+        tableView.backgroundColor = .clear
         return tableView
     }
 

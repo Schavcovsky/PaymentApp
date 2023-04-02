@@ -43,7 +43,8 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBank = banks[indexPath.row]
-        presenter.userSelection.selectedBank = selectedBank.id
+        presenter.userSelection.bankId = selectedBank.id
+        presenter.userSelection.bankName = selectedBank.name
         presenter.delegate?.navigateToInstallmentSelectionViewController()
     }
 
@@ -81,6 +82,7 @@ extension BankSelectionViewController {
         tableView.delegate = self
         tableView.register(BankTableViewCell.self, forCellReuseIdentifier: "BankCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .clear
         return tableView
     }
 

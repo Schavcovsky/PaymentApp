@@ -16,21 +16,18 @@ class PaymentsMethodsInstallmentsService: NetworkManager, PaymentsMethodsInstall
     func getPaymentMethodsInstallments(userSelection: UserSelection, completion: @escaping (Result<[Installments], Error>) -> Void) {
         guard let publicKey = PlistHelper.value(forKey: "publicKey",
                                                 fromPlist: "Environment"),
-              
               let selectedAmount = userSelection.amount,
-              let selectedPaymentMethodId = userSelection.selectedPaymentMethod?.first?.key,
-              let selectedPaymentMethodName = userSelection.selectedPaymentMethod?.first?.value,
-              let selectedBank = userSelection.selectedBank
+              let selectedPaymentMethodId = userSelection.paymentMethodId,
+              let selectedBank = userSelection.bankId
         else {
             return
         }
         
         let cleanedPublicKey = publicKey.trimmingCharacters(in: .whitespacesAndNewlines)
         let cleanedSelectedPaymentMethodId = selectedPaymentMethodId.trimmingCharacters(in: .whitespacesAndNewlines)
-        let cleanedSelectedPaymentMethodName = selectedPaymentMethodName.trimmingCharacters(in: .whitespacesAndNewlines)
         let cleanedSelectedPaymentBank = selectedBank.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        let urlString = "https://api.mercadopago.com/v1/payment_methods/installments?public_key=\(cleanedPublicKey)&amount=\(selectedAmount)&payment_method_id=\(selectedPaymentMethodId)&issuer.id=\(cleanedSelectedPaymentBank)"
+        let urlString = "https://api.mercadopago.com/v1/payment_methods/installments?public_key=\(cleanedPublicKey)&amount=\(selectedAmount)&payment_method_id=\(cleanedSelectedPaymentMethodId)&issuer.id=\(cleanedSelectedPaymentBank)"
         
         print(urlString)
         

@@ -30,7 +30,6 @@ final class InstallmentsSelectionPresenter {
         paymentsMethodsInstallmentsService.getPaymentMethodsInstallments(userSelection: userSelection) { [weak self] result in
             switch result {
             case .success(let installments):
-                print("Installments received: \(installments)") // Add this line to debug
                 self?.installments = installments.first?.payerCosts ?? []
                 self?.delegate?.displayInstallments(installments: self?.installments ?? [])
             case .failure(let error):

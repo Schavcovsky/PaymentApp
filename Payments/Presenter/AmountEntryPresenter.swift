@@ -17,17 +17,17 @@ typealias AmountEntryDelegate = AmountEntryViewProtocol & UIViewController
 final class AmountEntryPresenter {
     weak var delegate: AmountEntryViewProtocol?
     let userSelection: UserSelection
-    var amount: Int?
+    var amount: Double?
     
     init(userSelection: UserSelection) {
         self.userSelection = userSelection
     }
     
     func isValidAmount() -> Bool {
-        return self.amount ?? Int(0.0) >= 1000
+        return self.amount ?? 0.0 >= 1000
     }
     
     func saveAmount() {
-        userSelection.amount = self.amount
+        userSelection.amount = Double(self.amount ?? 0.0)
     }
 }

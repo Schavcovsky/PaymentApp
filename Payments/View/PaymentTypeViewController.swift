@@ -43,7 +43,8 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPaymentMethod = paymentMethods[indexPath.row]
-        presenter.userSelection.selectedPaymentMethod = [selectedPaymentMethod.id: selectedPaymentMethod.name]
+        presenter.userSelection.paymentMethodId = selectedPaymentMethod.id
+        presenter.userSelection.paymentMethodName = selectedPaymentMethod.name
         presenter.delegate?.navigateToBankSelectionViewController()
     }
     
@@ -80,6 +81,7 @@ extension PaymentTypeViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PaymentMethodTableViewCell.self, forCellReuseIdentifier: "PaymentMethodCell")
+        tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }
