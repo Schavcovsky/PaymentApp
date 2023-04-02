@@ -82,9 +82,9 @@ extension InstallmentsSelectionViewController {
             paymentCardFlowView.heightAnchor.constraint(equalToConstant: 150),
             
             installmentsTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
-            installmentsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            installmentsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            installmentsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            installmentsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            installmentsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            installmentsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
     }
 }

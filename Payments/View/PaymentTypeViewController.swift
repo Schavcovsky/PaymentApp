@@ -43,7 +43,7 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPaymentMethod = paymentMethods[indexPath.row]
-        presenter.userSelection.selectedPaymentMethod = selectedPaymentMethod.id
+        presenter.userSelection.selectedPaymentMethod = [selectedPaymentMethod.id: selectedPaymentMethod.name]
         presenter.delegate?.navigateToBankSelectionViewController()
     }
     

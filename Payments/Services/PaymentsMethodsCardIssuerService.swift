@@ -14,7 +14,9 @@ protocol PaymentsMethodsCardIssuerServiceProtocol {
 
 class PaymentsMethodsCardIssuerService: NetworkManager, PaymentsMethodsCardIssuerServiceProtocol {
     func getPaymentMethodsCardIssuer(userSelection: UserSelection, completion: @escaping (Result<[CardIssuer], Error>) -> Void) {
-        guard let publicKey = PlistHelper.value(forKey: "publicKey", fromPlist: "Environment"), let selectedPaymentMethod = userSelection.selectedPaymentMethod else {
+        guard let publicKey = PlistHelper.value(forKey: "publicKey", fromPlist: "Environment"),
+              let selectedPaymentMethodDict = userSelection.selectedPaymentMethod,
+              let selectedPaymentMethod = selectedPaymentMethodDict.first?.key else {
             return
         }
         
@@ -28,3 +30,4 @@ class PaymentsMethodsCardIssuerService: NetworkManager, PaymentsMethodsCardIssue
         }
     }
 }
+
