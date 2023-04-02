@@ -8,7 +8,7 @@
 struct ViewStringConstants {
     struct AmountEntry {
         static let amountPlaceholder = "Ingresa monto a recargar"
-        static let amountErrorLabel = "Sólo se puede recargar montos iguales o superiores a $ 1.000"
+        static let amountErrorLabel = "Sólo se puede recargar montos entre $ 500 y $ 2.500.000"
         static let continueButton = "Continuar"
     }
     

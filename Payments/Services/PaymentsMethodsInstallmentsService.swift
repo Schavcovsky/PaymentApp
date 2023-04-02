@@ -16,9 +16,9 @@ class PaymentsMethodsInstallmentsService: NetworkManager, PaymentsMethodsInstall
     func getPaymentMethodsInstallments(userSelection: UserSelection, completion: @escaping (Result<[Installments], Error>) -> Void) {
         guard let publicKey = PlistHelper.value(forKey: "publicKey",
                                                 fromPlist: "Environment"),
-              let selectedAmount = userSelection.amount,
-              let selectedPaymentMethodId = userSelection.paymentMethodId,
-              let selectedBank = userSelection.bankId
+              let selectedAmount = userSelection.current.amount,
+              let selectedPaymentMethodId = userSelection.current.paymentMethodId,
+              let selectedBank = userSelection.current.bankId
         else {
             return
         }

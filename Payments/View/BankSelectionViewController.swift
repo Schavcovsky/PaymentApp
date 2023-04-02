@@ -27,6 +27,8 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
         setupViewHierarchy()
         presenter.delegate = self
         presenter.fetchPaymentMethodCardIssuer()
+        let backButton = UIBarButtonItem(title: "Banco", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
     }
     
     // MARK: - UITableViewDataSource methods
@@ -43,8 +45,7 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBank = banks[indexPath.row]
-        presenter.userSelection.bankId = selectedBank.id
-        presenter.userSelection.bankName = selectedBank.name
+        presenter.userSelection.updateBank(id: selectedBank.id, name: selectedBank.name)
         presenter.delegate?.navigateToInstallmentSelectionViewController()
     }
 
@@ -97,7 +98,6 @@ extension BankSelectionViewController {
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 130),
 
             banksTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             banksTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),

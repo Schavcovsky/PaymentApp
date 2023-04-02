@@ -29,7 +29,6 @@ class ConfirmPaymentViewController: ConfirmPaymentDelegate, ViewSetupProtocol {
     func confirmTransaction() {
         
     }
-    
 }
 
 // MARK: - Setting up UI
@@ -45,6 +44,7 @@ extension ConfirmPaymentViewController {
         button.setTitle("Confirmar", for: .normal)
         button.isEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         return button
     }
     
@@ -58,7 +58,6 @@ extension ConfirmPaymentViewController {
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 210),
             
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -70,7 +69,14 @@ extension ConfirmPaymentViewController {
 
 extension ConfirmPaymentViewController {
     @objc private func continueButtonTapped() {
-        //presenter.saveAmount()
-        //navigateToPaymentTypeViewController()
+        //presenter.userSelection.reset()
+
+        for viewController in navigationController?.viewControllers ?? [] {
+            if let amountEntryVC = viewController as? AmountEntryViewController {
+                navigationController?.popToViewController(amountEntryVC, animated: true)
+                amountEntryVC.actionDelegate?.onContinueButtonTapped()
+                break
+            }
+        }
     }
 }

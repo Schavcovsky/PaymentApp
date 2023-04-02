@@ -26,6 +26,8 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
         setupViewHierarchy()
         presenter.delegate = self
         presenter.getInstallments()
+        let backButton = UIBarButtonItem(title: "Cuotas", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
     }
     
     func displayInstallments(installments: [Installments.PayerCost]) {
@@ -53,8 +55,7 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedInstallment = presenter.installments[indexPath.row]
-        presenter.userSelection.selectedInstallment = String(selectedInstallment.installments)
-        presenter.userSelection.amountInterest = selectedInstallment.totalAmount
+        presenter.userSelection.updateInstallmentData(installment: selectedInstallment.installments, totalAmount: String(selectedInstallment.totalAmount))
         presenter.delegate?.navigateToBankSelectionViewController()
     }
     
@@ -93,7 +94,6 @@ extension InstallmentsSelectionViewController {
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 150),
             
             installmentsTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             installmentsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),

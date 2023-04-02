@@ -8,11 +8,14 @@
 import UIKit
 
 class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextFieldDelegate {
-    private let presenter: AmountEntryPresenter
+    internal let presenter: AmountEntryPresenter
     private lazy var amountTextField = makeAmountTextField()
     private lazy var continueButton = makeContinueButton()
     private lazy var errorLabel = makeErrorLabel()
-        
+    private var continueButtonBottomConstraint: NSLayoutConstraint!
+    private var amountTextFieldCenterYConstraint: NSLayoutConstraint!
+    weak var actionDelegate: AmountEntryViewActionDelegate?
+
     init(presenter: AmountEntryPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -27,8 +30,19 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
         setupViewHierarchy()
         addGestureRecognizer()
         errorLabel.isHidden = true
+        
+        let backButton = UIBarButtonItem(title: "Inicio", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+        
     func addGestureRecognizer() {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapRecognizer)
@@ -46,10 +60,14 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
         errorLabel.isHidden = false
     }
     
-    func navigateToPaymentTypeViewController() {
+    func navigateToPaymentTypeViewController(viewController: UIViewController) {
         let paymentTypePresenter = PaymentTypePresenter(userSelection: presenter.userSelection)
         let paymentTypeViewController = PaymentTypeViewController(presenter: paymentTypePresenter)
-        navigationController?.pushViewController(paymentTypeViewController, animated: true)
+        viewController.navigationController?.pushViewController(paymentTypeViewController, animated: true)
+
+        let amountEntryPresenter = AmountEntryPresenter(userSelection: presenter.userSelection)
+        let amountEntryViewController = AmountEntryViewController(presenter: amountEntryPresenter)
+        amountEntryViewController.actionDelegate = amountEntryViewController
     }
 }
 
@@ -104,16 +122,24 @@ extension AmountEntryViewController {
             
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             continueButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+
+        continueButtonBottomConstraint = continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        continueButtonBottomConstraint.isActive = true
+        
+        amountTextFieldCenterYConstraint = amountTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        amountTextFieldCenterYConstraint.isActive = true
     }
 }
 
 extension AmountEntryViewController {
     @objc private func continueButtonTapped() {
         presenter.saveAmount()
-        navigateToPaymentTypeViewController()
+        presenter.navigateToPaymentTypeViewController(viewController: self)
+        amountTextField.text = nil
+        continueButton.isEnabled = false
+        dismissKeyboard()
     }
 }
 
@@ -125,5 +151,54 @@ extension AmountEntryViewController {
     
     @objc private func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension AmountEntryViewController {
+    @objc private func keyboardWillShow(notification: Notification) {
+        if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardFrame.height
+            continueButtonBottomConstraint.constant = -keyboardHeight - 16
+            amountTextFieldCenterYConstraint.constant = -(keyboardHeight / 2)
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: Notification) {
+        continueButtonBottomConstraint.constant = -16
+        amountTextFieldCenterYConstraint.constant = 0
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+extension AmountEntryViewController: AmountEntryViewActionDelegate {
+    func onContinueButtonTapped() {
+        let alert = UIAlertController(title: "Payment Details", message: userSelectionMessage(), preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.presenter.userSelection.reset()
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
+    private func userSelectionMessage() -> String {
+        let selection = presenter.userSelection.current
+        let amount = selection.amount ?? "N/A"
+        let paymentMethod = selection.paymentMethodName ?? "N/A"
+        let bank = selection.bankName ?? "N/A"
+        let installment = selection.selectedInstallment.map(String.init) ?? "N/A"
+        let amountInterest = selection.amountInterest ?? "N/A"
+
+        return """
+        Amount: \(amount)
+        Payment Method: \(paymentMethod)
+        Bank: \(bank)
+        Installments: \(installment)
+        Total Amount with Interest: \(amountInterest)
+        """
     }
 }

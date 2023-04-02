@@ -27,6 +27,8 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
         setupViewHierarchy()
         presenter.delegate = self
         presenter.fetchPaymentMethods()
+        let backButton = UIBarButtonItem(title: "Métodos de Pago", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backButton
     }
     
     // MARK: - UITableViewDataSource methods
@@ -43,8 +45,7 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPaymentMethod = paymentMethods[indexPath.row]
-        presenter.userSelection.paymentMethodId = selectedPaymentMethod.id
-        presenter.userSelection.paymentMethodName = selectedPaymentMethod.name
+        presenter.userSelection.updatePaymentMethod(id: selectedPaymentMethod.id, name: selectedPaymentMethod.name)
         presenter.delegate?.navigateToBankSelectionViewController()
     }
     
@@ -81,7 +82,7 @@ extension PaymentTypeViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PaymentMethodTableViewCell.self, forCellReuseIdentifier: "PaymentMethodCell")
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .green
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }
@@ -97,7 +98,6 @@ extension PaymentTypeViewController {
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            paymentCardFlowView.heightAnchor.constraint(equalToConstant: 100),
 
             paymentTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             paymentTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
