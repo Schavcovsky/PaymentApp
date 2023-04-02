@@ -34,7 +34,7 @@ class InstallmentsSelectionViewController: InstallmentsSelectionDelegate, ViewSe
     }
     
     private func configureBackButton() {
-        let backButton = UIBarButtonItem(title: "Cuotas", style: .plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: ViewStringConstants.InstallmentsSelection.title, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
@@ -108,7 +108,7 @@ extension InstallmentsSelectionViewController {
     }
     
     private func makePaymentCardFlow() -> PaymentCardFlowView {
-        let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethodBank)
+        let view = PaymentCardFlowView(title: ViewStringConstants.InstallmentsSelection.paymentCardTitle, userSelection: presenter.userSelection, displayOption: .amountPaymentMethodBank)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }

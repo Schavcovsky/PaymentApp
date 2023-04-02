@@ -30,14 +30,14 @@ class ConfirmPaymentViewController: ConfirmPaymentDelegate, ViewSetupProtocol {
 // MARK: - Setting up UI
 extension ConfirmPaymentViewController {
     private func makePaymentCardFlow() -> PaymentCardFlowView {
-        let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethodBankInstallment)
+        let view = PaymentCardFlowView(title: ViewStringConstants.ConfirmPayment.paymentCardTitle, userSelection: presenter.userSelection, displayOption: .amountPaymentMethodBankInstallment)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
     
     private func makeContinueButton() -> PaymentsButton {
         let button = PaymentsButton(type: .system)
-        button.setTitle("Confirmar", for: .normal)
+        button.setTitle(ViewStringConstants.ConfirmPayment.continueButton, for: .normal)
         button.isEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)

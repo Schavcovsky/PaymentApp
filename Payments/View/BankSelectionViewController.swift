@@ -36,7 +36,7 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
     }
     
     private func configureBackButton() {
-        let backButton = UIBarButtonItem(title: "Banco", style: .plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: ViewStringConstants.BankSelection.title, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
@@ -111,7 +111,7 @@ extension BankSelectionViewController {
     }
     
     private func makePaymentCardFlow() -> PaymentCardFlowView {
-        let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amountPaymentMethod)
+        let view = PaymentCardFlowView(title: ViewStringConstants.BankSelection.paymentCardTitle, userSelection: presenter.userSelection, displayOption: .amountPaymentMethod)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }

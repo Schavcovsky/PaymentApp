@@ -36,7 +36,7 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
     }
     
     private func configureBackButton() {
-        let backButton = UIBarButtonItem(title: "Métodos de Pago", style: .plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: ViewStringConstants.PaymentType.title, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
@@ -111,7 +111,7 @@ extension PaymentTypeViewController {
     }
     
     private func makePaymentCardFlow() -> PaymentCardFlowView {
-        let view = PaymentCardFlowView(title: "Estas recargando", userSelection: presenter.userSelection, displayOption: .amount)
+        let view = PaymentCardFlowView(title: ViewStringConstants.PaymentType.paymentCardTitle, userSelection: presenter.userSelection, displayOption: .amount)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }

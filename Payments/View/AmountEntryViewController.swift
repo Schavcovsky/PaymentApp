@@ -40,7 +40,7 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
     }
     
     private func configureBackButton() {
-        let backButton = UIBarButtonItem(title: "Inicio", style: .plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: ViewStringConstants.AmountEntry.title, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
         
@@ -189,8 +189,8 @@ extension AmountEntryViewController {
 
 extension AmountEntryViewController: AmountEntryViewActionDelegate {
     func onContinueButtonTapped() {
-        let alert = UIAlertController(title: "Recarga exitosa", message: userSelectionMessage(), preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+        let alert = UIAlertController(title: ViewStringConstants.AmountEntry.alertTitle, message: userSelectionMessage(), preferredStyle: .alert)
+        let okAction = UIAlertAction(title: ViewStringConstants.AmountEntry.alertPrimaryButton, style: .default) { [weak self] _ in
             self?.presenter.userSelection.reset()
         }
         alert.addAction(okAction)
@@ -199,18 +199,18 @@ extension AmountEntryViewController: AmountEntryViewActionDelegate {
     
     private func userSelectionMessage() -> String {
         let selection = presenter.userSelection.current
-        let amount = selection.amount?.formatAsMoney() ?? "N/A"
-        let paymentMethod = selection.paymentMethodName ?? "N/A"
-        let bank = selection.bankName ?? "N/A"
-        let installment = selection.selectedInstallment.map(String.init) ?? "N/A"
-        let amountInterest = selection.amountInterest?.formatAsMoney() ?? "N/A"
+        let amount = selection.amount?.formatAsMoney() ?? .notAvailable
+        let paymentMethod = selection.paymentMethodName ?? .notAvailable
+        let bank = selection.bankName ?? .notAvailable
+        let installment = selection.selectedInstallment.map(String.init) ?? .notAvailable
+        let amountInterest = selection.amountInterest?.formatAsMoney() ?? .notAvailable
 
         return """
-        Monto: \(amount)
-        Método de Pago: \(paymentMethod)
-        Banco: \(bank)
-        Cuotas: \(installment)
-        Monto total con interés: \(amountInterest)
+        \(ViewStringConstants.AmountEntry.alertContentAmount) \(amount)
+        \(ViewStringConstants.AmountEntry.alertContentPaymentMethod) \(paymentMethod)
+        \(ViewStringConstants.AmountEntry.alertContentBank) \(bank)
+        \(ViewStringConstants.AmountEntry.alertContentInstallments) \(installment)
+        \(ViewStringConstants.AmountEntry.alertContentAmountInterest) \(amountInterest)
         """
     }
 }
