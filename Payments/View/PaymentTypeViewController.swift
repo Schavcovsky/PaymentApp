@@ -12,7 +12,8 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
     private var paymentMethods: [PaymentMethod] = []
     private lazy var paymentCardFlowView = makePaymentCardFlow()
     private lazy var paymentTableView = makePaymentTableView()
-    
+    private var paymentTableViewHeightConstraint: NSLayoutConstraint?
+
     init(presenter: PaymentTypePresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -56,6 +57,7 @@ class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetu
     func displayPaymentMethods(paymentMethods: [PaymentMethod]) {
         self.paymentMethods = paymentMethods
         paymentTableView.reloadData()
+        updateTableViewHeight()
     }
     
     func showError(message: String) {
@@ -82,7 +84,6 @@ extension PaymentTypeViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PaymentMethodTableViewCell.self, forCellReuseIdentifier: "PaymentMethodCell")
-        tableView.backgroundColor = .green
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }
@@ -102,7 +103,16 @@ extension PaymentTypeViewController {
             paymentTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             paymentTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             paymentTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            paymentTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+
+        paymentTableViewHeightConstraint = paymentTableView.heightAnchor.constraint(equalToConstant: 0)
+        paymentTableViewHeightConstraint?.isActive = true
+    }
+    
+    private func updateTableViewHeight() {
+        DispatchQueue.main.async {
+            self.paymentTableViewHeightConstraint?.constant = self.paymentTableView.contentSize.height
+            self.view.layoutIfNeeded()
+        }
     }
 }

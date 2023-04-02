@@ -12,6 +12,8 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
     private var banks: [CardIssuer] = []
     private lazy var paymentCardFlowView = makePaymentCardFlow()
     private lazy var banksTableView = makeBanksTableView()
+    private var bankTableViewHeightConstraint: NSLayoutConstraint?
+    private var banksTableViewBottomConstraint: NSLayoutConstraint?
 
     init(presenter: BankSelectionPresenter) {
         self.presenter = presenter
@@ -27,7 +29,7 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
         setupViewHierarchy()
         presenter.delegate = self
         presenter.fetchPaymentMethodCardIssuer()
-        let backButton = UIBarButtonItem(title: "Banco", style: .plain, target: nil, action: nil)
+        let backButton = UIBarButtonItem(title: "Inicio", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
@@ -56,6 +58,7 @@ class BankSelectionViewController: BankSelectionDelegate, ViewSetupProtocol, UIT
     func displayBanks(banks: [CardIssuer]) {
         self.banks = banks
         banksTableView.reloadData()
+        self.updateTableViewHeight()
     }
 
     func showError(message: String) {
@@ -76,7 +79,7 @@ extension BankSelectionViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
-
+    
     private func makeBanksTableView() -> PaymentsTableView {
         let tableView = PaymentsTableView()
         tableView.dataSource = self
@@ -86,23 +89,41 @@ extension BankSelectionViewController {
         tableView.backgroundColor = .clear
         return tableView
     }
-
+    
     // MARK: - ViewSetupProtocol methods
     func setupViews() {
         view.addSubview(paymentCardFlowView)
         view.addSubview(banksTableView)
     }
-
+    
     func setupConstraints() {
         NSLayoutConstraint.activate([
             paymentCardFlowView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             paymentCardFlowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             paymentCardFlowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-
+            
             banksTableView.topAnchor.constraint(equalTo: paymentCardFlowView.bottomAnchor, constant: 16),
             banksTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            banksTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            banksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            banksTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
+        
+        banksTableViewBottomConstraint = banksTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        banksTableViewBottomConstraint?.priority = .defaultLow
+        banksTableViewBottomConstraint?.isActive = true
+        
+        bankTableViewHeightConstraint = banksTableView.heightAnchor.constraint(equalToConstant: 0)
+        bankTableViewHeightConstraint?.isActive = true
+    }
+
+    private func updateTableViewHeight() {
+        DispatchQueue.main.async {
+            let remainingSpace = self.view.frame.height - self.paymentCardFlowView.frame.maxY - 16
+            if self.banksTableView.contentSize.height < remainingSpace {
+                self.bankTableViewHeightConstraint?.constant = self.banksTableView.contentSize.height
+            } else {
+                self.bankTableViewHeightConstraint?.constant = remainingSpace
+            }
+            self.view.layoutIfNeeded()
+        }
     }
 }

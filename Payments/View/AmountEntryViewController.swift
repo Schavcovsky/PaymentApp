@@ -177,7 +177,7 @@ extension AmountEntryViewController {
 
 extension AmountEntryViewController: AmountEntryViewActionDelegate {
     func onContinueButtonTapped() {
-        let alert = UIAlertController(title: "Payment Details", message: userSelectionMessage(), preferredStyle: .alert)
+        let alert = UIAlertController(title: "Recarga exitosa", message: userSelectionMessage(), preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             self?.presenter.userSelection.reset()
         }
@@ -187,18 +187,18 @@ extension AmountEntryViewController: AmountEntryViewActionDelegate {
     
     private func userSelectionMessage() -> String {
         let selection = presenter.userSelection.current
-        let amount = selection.amount ?? "N/A"
+        let amount = selection.amount?.formatAsMoney() ?? "N/A"
         let paymentMethod = selection.paymentMethodName ?? "N/A"
         let bank = selection.bankName ?? "N/A"
         let installment = selection.selectedInstallment.map(String.init) ?? "N/A"
-        let amountInterest = selection.amountInterest ?? "N/A"
+        let amountInterest = selection.amountInterest?.formatAsMoney() ?? "N/A"
 
         return """
-        Amount: \(amount)
-        Payment Method: \(paymentMethod)
-        Bank: \(bank)
-        Installments: \(installment)
-        Total Amount with Interest: \(amountInterest)
+        Monto: \(amount)
+        Método de Pago: \(paymentMethod)
+        Banco: \(bank)
+        Cuotas: \(installment)
+        Monto total con interés: \(amountInterest)
         """
     }
 }
