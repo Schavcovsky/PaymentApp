@@ -69,8 +69,6 @@ extension ConfirmPaymentViewController {
 
 extension ConfirmPaymentViewController {
     @objc private func continueButtonTapped() {
-        //presenter.userSelection.reset()
-
         for viewController in navigationController?.viewControllers ?? [] {
             if let amountEntryVC = viewController as? AmountEntryViewController {
                 navigationController?.popToViewController(amountEntryVC, animated: true)
