@@ -17,9 +17,8 @@ class PaymentsMethodsService: NetworkManager, PaymentsMethodsServiceProtocol {
         guard let publicKey = PlistHelper.value(forKey: "publicKey", fromPlist: "Environment")?.trimmingCharacters(in: .whitespacesAndNewlines) else {
             return
         }
-        
-        let urlString = "https://api.mercadopago.com/v1/payment_methods?public_key=\(publicKey)"
 
+        let urlString = APIEndpoint.paymentMethods.urlString.appending("?public_key=\(publicKey)")
         NetworkManager.request(url: urlString, httpMethod: .get, expecting: [PaymentMethod].self) { result, _, _, _ in
             completion(result)
         }
