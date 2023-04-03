@@ -18,38 +18,6 @@
             endingLineNumber = "34"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1410AC93-AC80-4194-AE60-F2FEEC23EBAF - c55fe04d768a0d88"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Payments.PaymentTypeViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Payments"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/Payments/View/PaymentTypeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "292">
-               </Location>
-               <Location
-                  uuid = "1410AC93-AC80-4194-AE60-F2FEEC23EBAF - 1db9d25f9cd09ec8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PaymentsTests.PaymentTypeViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "PaymentsTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/Payments/View/PaymentTypeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "292">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

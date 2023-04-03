@@ -126,12 +126,28 @@ class AmountEntryViewControllerTests: XCTestCase {
         
         // Trigger the continue button action
         sut.continueButton.sendActions(for: .touchUpInside)
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             XCTAssertFalse(self.sut.presentedViewController is UIAlertController)
             expectation.fulfill()
         }
         
         wait(for: [expectation], timeout: 1)
+    }
+    
+    func testViewDidLoad_amountTextFieldDelegateIsSet() {
+        sut.viewDidLoad()
+        XCTAssertTrue(sut.amountTextField.delegate === sut)
+    }
+
+    func testUpdateUIForAmount_invalidAmount_disablesContinueButton() {
+        sut.updateUIForAmount("-50")
+        XCTAssertFalse(sut.continueButton.isEnabled)
+    }
+    
+    func testUpdateAmountTextFieldText() {
+        let newAmount = "250"
+        sut.amountTextField.text = newAmount
+        XCTAssertEqual(sut.amountTextField.text, newAmount)
     }
 }

@@ -46,11 +46,9 @@
 		0390E25C29DA4D6B00FC686B /* AmountEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EEA29D7125600B4D28C /* AmountEntryViewController.swift */; };
 		0390E25D29DA4D8200FC686B /* AmountEntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2D29D7373400B4D28C /* AmountEntryPresenter.swift */; };
 		0390E25E29DA4D8C00FC686B /* UserSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA0129D8AECA0046720F /* UserSelection.swift */; };
-		0390E26029DA510E00FC686B /* MockPaymentTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390E25F29DA510E00FC686B /* MockPaymentTypePresenter.swift */; };
 		0390E26229DA513200FC686B /* PaymentTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F1D29D7301F00B4D28C /* PaymentTypeViewController.swift */; };
 		0390E26329DA513600FC686B /* PaymentTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2F29D7374600B4D28C /* PaymentTypePresenter.swift */; };
 		0390E26429DA513A00FC686B /* PaymentMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6CFF129D86AA500E5735E /* PaymentMethodTableViewCell.swift */; };
-		0390E26529DA514700FC686B /* MockPaymentTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390E25F29DA510E00FC686B /* MockPaymentTypePresenter.swift */; };
 		0390E26629DA526900FC686B /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F2329D7337500B4D28C /* PaymentMethod.swift */; };
 		0390E26829DA529E00FC686B /* Environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03D6CFEA29D7F42300E5735E /* Environment.plist */; };
 		0390E26B29DA52A400FC686B /* PaymentsMethodsCardIssuerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA0329D8D6FD0046720F /* PaymentsMethodsCardIssuerService.swift */; };
@@ -145,7 +143,6 @@
 		034DFA1329D95E5A0046720F /* ConfirmPaymentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPaymentPresenter.swift; sourceTree = "<group>"; };
 		034DFA1529D965070046720F /* Strings+ MoneyFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+ MoneyFormatting.swift"; sourceTree = "<group>"; };
 		0390E25829DA4BFA00FC686B /* AmountEntryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountEntryPresenterTests.swift; sourceTree = "<group>"; };
-		0390E25F29DA510E00FC686B /* MockPaymentTypePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPaymentTypePresenter.swift; sourceTree = "<group>"; };
 		03B4C5D729DA45FD0067FC53 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		03D6CFE629D7F21800E5735E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		03D6CFEA29D7F42300E5735E /* Environment.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Environment.plist; sourceTree = "<group>"; };
@@ -235,10 +232,9 @@
 		03093EFC29D7125600B4D28C /* PaymentsTests */ = {
 			isa = PBXGroup;
 			children = (
-				0390E26129DA511300FC686B /* Mock */,
 				03093EFD29D7125600B4D28C /* PaymentsTests.swift */,
-				0390E25829DA4BFA00FC686B /* AmountEntryPresenterTests.swift */,
 				033DBE2B29DA60BC00F758C2 /* AmountEntryViewControllerTests.swift */,
+				0390E25829DA4BFA00FC686B /* AmountEntryPresenterTests.swift */,
 			);
 			path = PaymentsTests;
 			sourceTree = "<group>";
@@ -346,14 +342,6 @@
 				034DF9FF29D8AD4B0046720F /* PaymentCardFlowView.swift */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		0390E26129DA511300FC686B /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				0390E25F29DA510E00FC686B /* MockPaymentTypePresenter.swift */,
-			);
-			path = Mock;
 			sourceTree = "<group>";
 		};
 		03D6CFE529D7F20000E5735E /* Network */ = {
@@ -636,7 +624,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				034DFA0629D8D79A0046720F /* CardIssuer.swift in Sources */,
-				0390E26529DA514700FC686B /* MockPaymentTypePresenter.swift in Sources */,
 				03B4C5D829DA45FD0067FC53 /* Strings.swift in Sources */,
 				03093EEB29D7125600B4D28C /* AmountEntryViewController.swift in Sources */,
 				03093F2029D7302B00B4D28C /* BankSelectionViewController.swift in Sources */,
@@ -685,7 +672,6 @@
 				0390E26F29DA52AA00FC686B /* PaymentsTableView.swift in Sources */,
 				0390E28129DA52BC00FC686B /* CardIssuer.swift in Sources */,
 				0390E27E29DA52B800FC686B /* UIViewController+ViewSetupProtocol.swift in Sources */,
-				0390E26029DA510E00FC686B /* MockPaymentTypePresenter.swift in Sources */,
 				03093EFE29D7125600B4D28C /* PaymentsTests.swift in Sources */,
 				0390E26C29DA52A400FC686B /* PaymentsMethodsInstallmentsService.swift in Sources */,
 				0390E26429DA513A00FC686B /* PaymentMethodTableViewCell.swift in Sources */,
