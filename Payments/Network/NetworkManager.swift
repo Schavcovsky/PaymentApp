@@ -8,14 +8,14 @@
 import Alamofire
 import Foundation
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
-}
-
 class NetworkManager {
+    enum HTTPMethod: String {
+        case get = "GET"
+        case post = "POST"
+        case put = "PUT"
+        case delete = "DELETE"
+    }
+    
     class func request<T: Decodable>(url: String, httpMethod: HTTPMethod, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil, expecting: T.Type, completion: @escaping (Result<T, Error>, HTTPURLResponse?, Data?, AFError?) -> Void) {
         AF.request(url, method: Alamofire.HTTPMethod(rawValue: httpMethod.rawValue), parameters: parameters, encoding: URLEncoding.default, headers: headers).validate().responseData { response in
 
