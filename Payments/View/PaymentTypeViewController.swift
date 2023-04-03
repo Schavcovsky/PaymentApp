@@ -9,13 +9,13 @@ import UIKit
 
 // MARK: - PaymentTypeViewController
 class PaymentTypeViewController: UIViewController, PaymentTypeDelegate, ViewSetupProtocol, UITableViewDataSource, UITableViewDelegate {
-    private let presenter: PaymentTypePresenter
-    private var paymentMethods: [PaymentMethod] = []
-    private lazy var activityIndicator = makeActivityIndicator()
-    private lazy var errorLabel = makeErrorLabel()
-    private lazy var paymentCardFlowView = makePaymentCardFlow()
-    private lazy var paymentTableView = makePaymentTableView()
-    private var paymentTableViewHeightConstraint: NSLayoutConstraint?
+    internal let presenter: PaymentTypePresenter
+    internal var paymentMethods: [PaymentMethod] = []
+    internal lazy var activityIndicator = makeActivityIndicator()
+    internal lazy var errorLabel = makeErrorLabel()
+    internal lazy var paymentCardFlowView = makePaymentCardFlow()
+    internal lazy var paymentTableView = makePaymentTableView()
+    internal var paymentTableViewHeightConstraint: NSLayoutConstraint?
 
     init(presenter: PaymentTypePresenter) {
         self.presenter = presenter

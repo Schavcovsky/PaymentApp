@@ -20,5 +20,160 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D7B8610-036A-4DAC-ADA0-AB493E2601F8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PaymentsTests/AmountEntryPresenterTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "testIsValidAmount()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "60FA1F08-ECCD-48A2-B53C-FB58E53C332B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PaymentsTests/PaymentsTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97983537-C5FA-41D4-81E3-EE2E5ECD4526"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PaymentsTests/AmountEntryPresenterTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "AmountEntryPresenterTests"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "97983537-C5FA-41D4-81E3-EE2E5ECD4526 - ce735f0ca0767cc6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PaymentsTests.AmountEntryPresenterTests.presenter.getter : Swift.Optional&lt;PaymentsTests.AmountEntryPresenter&gt;"
+                  moduleName = "PaymentsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/PaymentsTests/AmountEntryPresenterTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "97983537-C5FA-41D4-81E3-EE2E5ECD4526 - eb1ed55ebce60b2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PaymentsTests.AmountEntryPresenterTests.presenter.setter : Swift.Optional&lt;PaymentsTests.AmountEntryPresenter&gt;"
+                  moduleName = "PaymentsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/PaymentsTests/AmountEntryPresenterTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "97983537-C5FA-41D4-81E3-EE2E5ECD4526 - 219c54160baf15c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PaymentsTests.AmountEntryPresenterTests.presenter.modify : Swift.Optional&lt;PaymentsTests.AmountEntryPresenter&gt;"
+                  moduleName = "PaymentsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/PaymentsTests/AmountEntryPresenterTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "97983537-C5FA-41D4-81E3-EE2E5ECD4526 - 7ac200d34dc27608"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PaymentsTests.AmountEntryPresenterTests.presenter.modify : Swift.Optional&lt;PaymentsTests.AmountEntryPresenter&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "PaymentsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/PaymentsTests/AmountEntryPresenterTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "97983537-C5FA-41D4-81E3-EE2E5ECD4526 - ce81759ed37da0bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PaymentsTests.AmountEntryPresenterTests.init(invocation: Swift.Optional&lt;__C.NSInvocation&gt;) -&gt; PaymentsTests.AmountEntryPresenterTests"
+                  moduleName = "PaymentsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/PaymentsTests/AmountEntryPresenterTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "97983537-C5FA-41D4-81E3-EE2E5ECD4526 - 210eb7b7956366bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PaymentsTests.AmountEntryPresenterTests.init(selector: ObjectiveC.Selector) -&gt; PaymentsTests.AmountEntryPresenterTests"
+                  moduleName = "PaymentsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/PaymentsTests/AmountEntryPresenterTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "97983537-C5FA-41D4-81E3-EE2E5ECD4526 - 423fd27ee2fc2007"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PaymentsTests.AmountEntryPresenterTests.init() -&gt; PaymentsTests.AmountEntryPresenterTests"
+                  moduleName = "PaymentsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/schavcovsky/Documents/Projects/ML/PaymentApp/PaymentsTests/AmountEntryPresenterTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

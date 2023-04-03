@@ -9,11 +9,11 @@ import UIKit
 
 class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextFieldDelegate {
     internal let presenter: AmountEntryPresenter
-    private lazy var amountTextField = makeAmountTextField()
-    private lazy var continueButton = makeContinueButton()
-    private lazy var errorLabel = makeErrorLabel()
-    private var continueButtonBottomConstraint: NSLayoutConstraint!
-    private var amountTextFieldCenterYConstraint: NSLayoutConstraint!
+    internal lazy var amountTextField = makeAmountTextField()
+    internal lazy var continueButton = makeContinueButton()
+    internal lazy var errorLabel = makeErrorLabel()
+    internal var continueButtonBottomConstraint: NSLayoutConstraint!
+    internal var amountTextFieldCenterYConstraint: NSLayoutConstraint!
     weak var actionDelegate: AmountEntryViewActionDelegate?
 
     init(presenter: AmountEntryPresenter) {
@@ -60,7 +60,7 @@ class AmountEntryViewController: AmountEntryDelegate, ViewSetupProtocol, UITextF
     }
 
     // MARK: - AmountEntryDelegate
-    private func updateUIForAmount(_ amount: String) {
+    func updateUIForAmount(_ amount: String) {
         presenter.amount = amount
         let isValidAmount = presenter.isValidAmount()
         continueButton.isEnabled = isValidAmount
