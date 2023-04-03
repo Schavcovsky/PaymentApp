@@ -23,7 +23,6 @@ class BankTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .black
         return label
     }()
     
@@ -61,6 +60,10 @@ class BankTableViewCell: UITableViewCell {
             nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+    
+    private func setupCellAppearance() {
+        backgroundColor = .systemGray6
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

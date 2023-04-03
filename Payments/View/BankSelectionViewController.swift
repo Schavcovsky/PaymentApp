@@ -122,7 +122,6 @@ extension BankSelectionViewController {
         tableView.delegate = self
         tableView.register(BankTableViewCell.self, forCellReuseIdentifier: "BankCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .clear
         return tableView
     }
     
