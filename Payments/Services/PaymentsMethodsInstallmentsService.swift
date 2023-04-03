@@ -22,8 +22,7 @@ class PaymentsMethodsInstallmentsService: NetworkManager, PaymentsMethodsInstall
             return
         }
         
-        let urlString = "https://api.mercadopago.com/v1/payment_methods/installments?public_key=\(publicKey)&amount=\(selectedAmount)&payment_method_id=\(selectedPaymentMethodId)&issuer.id=\(selectedBank)"
-        
+        let urlString = APIEndpoint.installments(publicKey: publicKey, amount: selectedAmount, paymentMethodId: selectedPaymentMethodId, issuerId: selectedBank).urlString
         NetworkManager.request(url: urlString, httpMethod: .get, expecting: [Installments].self) { result, _, _, _ in
             completion(result)
         }
