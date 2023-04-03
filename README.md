@@ -8,6 +8,7 @@ Payments is an iOS app that allows users to perform mobile recharges using their
 - Integration with MercadoPago gateway
 - MVP architecture pattern
 - Good coding practices
+- Dark Mode ready
 
 ## Getting Started
 
