@@ -10,7 +10,6 @@
 		03093EE729D7125600B4D28C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EE629D7125600B4D28C /* AppDelegate.swift */; };
 		03093EE929D7125600B4D28C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EE829D7125600B4D28C /* SceneDelegate.swift */; };
 		03093EEB29D7125600B4D28C /* AmountEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EEA29D7125600B4D28C /* AmountEntryViewController.swift */; };
-		03093EF029D7125600B4D28C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03093EEF29D7125600B4D28C /* Assets.xcassets */; };
 		03093EF329D7125600B4D28C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03093EF129D7125600B4D28C /* LaunchScreen.storyboard */; };
 		03093EFE29D7125600B4D28C /* PaymentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093EFD29D7125600B4D28C /* PaymentsTests.swift */; };
 		03093F0829D7125600B4D28C /* PaymentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F0729D7125600B4D28C /* PaymentsUITests.swift */; };
@@ -30,6 +29,7 @@
 		03093F4129D7B6DF00B4D28C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F4029D7B6DF00B4D28C /* Constants.swift */; };
 		03093F4529D7DD4C00B4D28C /* PaymentsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03093F4429D7DD4C00B4D28C /* PaymentsLabel.swift */; };
 		033DBE2C29DA60BC00F758C2 /* AmountEntryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DBE2B29DA60BC00F758C2 /* AmountEntryViewControllerTests.swift */; };
+		033DBE2E29DA6E9300F758C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033DBE2D29DA6E9300F758C2 /* Assets.xcassets */; };
 		034DFA0029D8AD4B0046720F /* PaymentCardFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DF9FF29D8AD4B0046720F /* PaymentCardFlowView.swift */; };
 		034DFA0229D8AECA0046720F /* UserSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA0129D8AECA0046720F /* UserSelection.swift */; };
 		034DFA0429D8D6FD0046720F /* PaymentsMethodsCardIssuerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DFA0329D8D6FD0046720F /* PaymentsMethodsCardIssuerService.swift */; };
@@ -107,7 +107,6 @@
 		03093EE629D7125600B4D28C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03093EE829D7125600B4D28C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		03093EEA29D7125600B4D28C /* AmountEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountEntryViewController.swift; sourceTree = "<group>"; };
-		03093EEF29D7125600B4D28C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03093EF229D7125600B4D28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03093EF429D7125600B4D28C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03093EF929D7125600B4D28C /* PaymentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaymentsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +129,7 @@
 		03093F4029D7B6DF00B4D28C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		03093F4429D7DD4C00B4D28C /* PaymentsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsLabel.swift; sourceTree = "<group>"; };
 		033DBE2B29DA60BC00F758C2 /* AmountEntryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountEntryViewControllerTests.swift; sourceTree = "<group>"; };
+		033DBE2D29DA6E9300F758C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Desktop/p/Assets.xcassets; sourceTree = "<group>"; };
 		034DF9FF29D8AD4B0046720F /* PaymentCardFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardFlowView.swift; sourceTree = "<group>"; };
 		034DFA0129D8AECA0046720F /* UserSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelection.swift; sourceTree = "<group>"; };
 		034DFA0329D8D6FD0046720F /* PaymentsMethodsCardIssuerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsMethodsCardIssuerService.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 				03093F1C29D71A0E00B4D28C /* Base */,
 				03093EE629D7125600B4D28C /* AppDelegate.swift */,
 				03093EE829D7125600B4D28C /* SceneDelegate.swift */,
-				03093EEF29D7125600B4D28C /* Assets.xcassets */,
+				033DBE2D29DA6E9300F758C2 /* Assets.xcassets */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -494,7 +494,7 @@
 			files = (
 				03093EF329D7125600B4D28C /* LaunchScreen.storyboard in Resources */,
 				03D6CFEB29D7F42300E5735E /* Environment.plist in Resources */,
-				03093EF029D7125600B4D28C /* Assets.xcassets in Resources */,
+				033DBE2E29DA6E9300F758C2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
