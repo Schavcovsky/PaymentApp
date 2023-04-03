@@ -20,7 +20,7 @@ protocol AmountEntryViewProtocol: AnyObject {
 typealias AmountEntryDelegate = AmountEntryViewProtocol & UIViewController
 
 final class AmountEntryPresenter {
-    weak var delegate: AmountEntryViewProtocol?
+    internal weak var delegate: AmountEntryViewProtocol?
     let userSelection: UserSelection
     var amount: String?
     

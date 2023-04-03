@@ -18,7 +18,7 @@ typealias PaymentTypeDelegate = PaymentTypeViewProtocol
 final class PaymentTypePresenter {
     weak var delegate: PaymentTypeViewProtocol?
     let userSelection: UserSelection
-    private let paymentsMethodsService: PaymentsMethodsServiceProtocol
+    internal let paymentsMethodsService: PaymentsMethodsServiceProtocol
     
     init(userSelection: UserSelection, paymentsMethodsService: PaymentsMethodsServiceProtocol = PaymentsMethodsService()) {
         self.userSelection = userSelection
